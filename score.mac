@@ -1,0 +1,709 @@
+; [ECLC]PS:<RELPH.ROGUE>SCORE.MAC.46, 12-Nov-84 16:13:44, Edit by RELPH
+Title Score - Score file hacker for rogue
+subttl	symbols, macros, etc.
+Search Monsym,Macsym
+	sall
+
+;	Register equates
+	t=0
+	index=5
+	count=6
+	addr=7
+	temp=10
+	P=17
+
+; Other symbols
+	bfrsiz==400			; size of text buffer
+	pdlsiz==100			; size of stack
+	bsiz==20                        ; size of score data block
+
+; Score symbols
+	.SCCHK==0		; checksum word
+	.SCUSR==1
+	.SCGLD==2
+	.SCDAT==3
+	.SCKIL==4
+	.SCLEV==5
+;useful macros (lots already defined in MACSYM)
+
+;type guide (noise) word string
+define NOISE (MSG)
+<	movei	1,Csblk
+	movei	2,[flddb.(.cmnoi,,<-1,,[asciz/MSG/]>)]
+	COMND
+	 ERJMP	[call	Warn
+		 jrst	Go]>
+
+	page
+subttl	Initial setup stuff
+
+Score:	RESET				; obligatory
+	move	p,[iowd pdlsiz,pdl]
+Interr:	movei	1,.FHSLF	; get player's capabilities
+	RPCAP
+	 ERJMP	Fatal
+	txnn	2,sc%ctc	; see if this guy can trap ^C
+	 jrst	[TMSG <
+?SCORE: Insufficient capabilities> ; he can't - so he can't play either
+		 HALTF
+		 jrst	Interr]
+	txo	3,sc%ctc	; he can - so enable him to do it
+	EPCAP
+	 ERJMP	Fatal
+	movx	1,.FHJOB	; set up to trap terminal interrupts
+	move	2,[737330,,267000] ;  on all characters for entire job
+	STIW
+	 ERJMP	Fatal
+	TMSG	<
+Rogue Scorer Version 1.1
+
+>
+
+Go:	movei	1,Csblk
+	movei	2,[flddb. (.cmini)] ; set things up
+	COMND
+	 ERJMP	[call	Warn
+		 jrst	Go]
+	movem	p,Savesp	; save in case of repars
+Repars:	move	p,Savesp
+	movei	1,Csblk
+	movei	2,Fnblk1
+	COMND			; get a command!
+	 ERJMP	[call	Warn
+		 jrst	Go]
+	txne	1,cm%nop	; did he screw up?
+	 jrst	[call	Warn	; yes-what an ass
+		 jrst	Go]
+	hrrz	3,3		; no-get address of handling routine
+	cain	3,fnblk1	; keyword?
+	 jrst	C.key		; yes
+	TMSG	<
+?SCORE: Impossible function block
+>
+	jrst	K.die		; no-choke bad
+	page
+
+	subttl	function block handling routines
+
+				; it was a keyword
+C.key:	hrrz	2,(2)		; find out which keyword it was
+	jrst	(2)		; and jump to the right routine
+
+K.exit:	NOISE	(writing data out)
+	call	Confrm
+	 jrst	Go
+; do pre-unpmaping cleanup here
+	skipn	Sjfn		; do we have a score file?
+	 jrst	K.die		;   no
+	call	Unpmap		;   yes-unmap it
+	movx	1,.FHJOB	; reset terminal interrupt word for
+	seto	2,		;   the entire job
+	STIW			; do it
+	 ERJMP	Fatal
+	HALTF			; aaaaaaarrrrrrrggggghhhhh!!!!!!
+	jrst	score
+
+K.file:	noise	(containing scores)
+	movei	1,Csblk		; get which file he wants
+	movei	2,[flddb.(.cmifi)]
+	COMND
+	 ERJMP	Fatal
+	push	p,2                     ; save jfn returned
+	txne	1,cm%nop	; did he type a filespec?
+	 jrst	[call	Warn	; no
+		 jrst	Go]
+	skipe	Sjfn		; do we already have a score file?
+	 call	Unpmap		;   Yes-unpmap,release
+	pop	p,2		; restore jfn
+	movem	2,Sjfn		;   no-store jfn returned
+	call	Confrm
+	 jrst	Reljfn
+Sgjfn:	move	1,Sjfn		; get the score file jfn
+	move	2,[1,,.FBREF]	; get access word (really a date)
+	movei	3,Scoacc
+	GTFDB
+	 ERJMP	Fatal
+	skipn	Scoacc		; is it non-zero?
+	 call	Snoacc		; no-file busy
+	move	1,Sjfn
+	hrli	1,.FBREF	; yes-prepare to change access word to
+	seto	2,		;   lock file access
+	setz	3,
+	CHFDB			; do it
+	 ERJMP	Fatal
+	move	1,Sjfn		; set up for openf
+	movx	2,of%rd!of%wr!of%rtd
+	OPENF			; open file, read and write, restrict
+	 call	[move	1,(p)
+		 subi	1,2
+		 movem	1,(p)
+		 jrst	Snoacc]
+	move	1,Sjfn
+	hrl	1,1		; set up ac's for pmap
+	hrri	1,1
+	hrli	2,.FHSLF
+	hrri	2,Spage/1000
+	movx	3,pm%rd!pm%wr	; read and write
+	PMAP			; do it
+	 ERJMP	Fatal		; failed
+	move	1,Sjfn		; set up for rftad
+	move	2,[1,,.FBCNT]	; get number of writes,,number of refs
+	movei	3,Fdbblk	; address
+	GTFDB
+	 ERJMP	Fatal
+	move	1,Fdbblk	; get value returned
+	hlrz	1,1		; get # of writes
+	skipn	Spage		; don't check if none stored in file
+	 jrst	S.flus
+	subi	1,1
+	came	1,Spage		; is it the same as what is stored?
+	 call	S.tamp
+	addi	1,1
+S.flus:	movem	1,Spage		; store new value
+	GTAD			; see what today is
+	andx	1,.LHALF	; fix
+	subi	1,525254	; magic constant (timezone)
+	camge	1,Spage+1	; do we need to flush 'weekly'?
+	 jrst	S.fixd		; nope
+	TMSG	<%SCORE: Weeklies scheduled to be flushed.  Do it? [Y or N]>
+	PBIN
+	move	2,1
+	TMSG	<
+>
+	caie	2,"y"
+	cain	2,"Y"
+	 skipa
+	jrst	S.fixd		; no, don't flush, but set date anyway
+	setzm	Spage+BSIZ	; yes
+	move	2,[Spage+BSIZ,,Spage+BSIZ+1]
+	blt	2,Spage-1+BSIZ*^D11 ; wipe out old data
+	move	2,Spage+1	; get old date
+S.fixd:	GTAD
+	andx	1,.LHALF
+	subi	1,525254	; magic constant for time zone
+	move	2,1
+S.fix1:	hrroi	1,Atmbfr
+	movx	3,ot%day!ot%fdy	; output day of week
+	ODTIM
+	move	4,Atmbfr
+	came	4,[ascii /Sunda/] ; sunday yet?
+	 jrst	[add	2,[1,,0] ; figure new date to flush
+		 jrst	S.fix1]
+	movem	2,Spage+1	; and store it
+	jrst	Go
+
+S.tamp:	move	3,1		; save old value
+	TMSG <?ROGUE: The score file has been tampered with.  Fix it? [Y or N]>
+	PBIN
+	caie	1,"y"
+	cain	1,"Y"
+	 skipa
+	jrst	K.qui1
+	TMSG	<
+>
+	move	1,3
+	RET
+
+K.help:	NOISE	(with Score)
+	call	Confrm
+	 jrst	Go
+	TMSG	<
+Score is a program which allows the Rogue support-person
+to diddle the score file at will.
+
+Additional help to follow.
+>
+	jrst	Go
+K.qui:	noise	(without writing data) ; say goodbye
+	call	Confrm		; see if he is sure
+	 jrst	Go		; he isn't
+K.qui1:	skipn	Sjfn		; do we have a score file?
+	 jrst	K.die		;   no
+	hrl	1,Sjfn		;   yes-unmap pages/discard
+	hrri	1,1
+	hrli	2,.FHSLF
+	hrri	2,Spage/1000
+	movx	3,pm%abt	; abort update
+	PMAP			; do it
+	 ERJMP	Fatal		; failed
+	call	Unpmap		; close file
+K.die:	movx	1,.FHJOB	; reset terminal interrupt word for
+	seto	2,		;   the entire job
+	STIW			; do it
+	 ERJMP	Fatal
+	HALTF			; aaaaaaarrrrrrrggggghhhhh!!!!!!
+	jrst	Score
+	
+;un-pmap the file
+Unpmap:	seto	1,
+	hrli	2,.FHSLF	; current process
+	hrri	2,Spage/1000	; page 376
+	setz	3,
+	PMAP			; unmap page
+	 ERJMP	Fatal
+Closef:	move	1,Sjfn		; set up to close score file, keep jfn
+	txo	1,co%nrj
+	CLOSF			; do it
+	 ERJMP	Fatal		; failed
+Reljfn:	move	1,Sjfn		; reset access word
+	hrli	1,.FBREF	; prepare to change access word to
+	setob	2,3		;   unlock file access
+	CHFDB			; do it
+	 ERJMP	Fatal
+	move	1,Sjfn		; release jfn
+	RLJFN
+	 ERJMP	Fatal
+	setzm	Sjfn		; clear to show we've got no score file
+	RET			; and return
+
+K.all:	skipn	Sjfn		; do we have a filename?
+	 jrst	Nofile		;  no
+	NOISE	(number)	; all-time best
+	movei	1,Csblk		; get which entry he wants
+	movei	2,[flddb. (.cmnum,,<^D10>)]
+	COMND
+	 ERJMP	Fatal
+	txne	1,cm%nop	; did he type a number?
+	 jrst	[call	Warn	; no
+		 jrst	Go]
+	cail	2,1
+	caile	2,^D10
+	 jrst	[TMSG	<%SCORE index must be between 1 and 10>
+		 jrst	Go]
+	move	index,2		; yes-save it in index
+	addi	index,^D11	; correct for offset of all-time
+	imuli	index,BSIZ
+	addi	index,Spage	; index contains start of this block
+	NOISE	(attribute)
+	movei	1,Csblk
+	movei	2,Fnblk2
+	COMND			; get which attribute he wants to
+	 ERJMP	[call	Warn	;   change, and make sure he types
+		 jrst	Go]	;   a valid keyword
+	txne	1,cm%nop
+	 jrst	[call	Warn
+		 jrst	Go]
+	hrrz	3,3		; verify address of function block
+	cain	3,Fnblk2	; keyword?
+	 jrst	C.key2		; yes
+	TMSG	<
+?SCORE: Impossible function block
+>
+	jrst	K.die		; none of the above - blow chow
+
+K.week:	skipn	Sjfn		; do we have a score file?
+	 jrst	Nofile		;  no
+	NOISE	(number)	; weekly best
+	movei	1,Csblk		; get which entry he wants
+	movei	2,[flddb.(.cmnum,,<^D10>)]
+	COMND
+	 ERJMP	Fatal
+	txne	1,cm%nop	; make sure it parsed ok
+	 jrst	[call	Warn
+		 jrst	Go]
+	cail	2,1
+	caile	2,^D10
+	 jrst	[TMSG	<%SCORE index must be between 1 and 10>
+		 jrst	Go]
+	move	index,2		; save index, no offset for weekly
+	imuli	index,BSIZ
+	addi	index,Spage	; index contains start of this block
+	noise	(attribute)
+	movei	1,Csblk
+	movei	2,Fnblk2
+	COMND			; see which attribute he wants to
+	 ERJMP	[call	Warn	;   changes, and make sure he types
+		 jrst	Go]	;   a valid keyword
+	txne	1,cm%nop
+	 jrst	[call	Warn
+		 jrst	Go]
+	hrrz	3,3		; verify address of function block
+	cain	3,fnblk2	; keyword?
+	 jrst	C.key2		; yes
+	TMSG	<
+?SCORE: Impossible function block
+>
+	jrst	K.die		; none of the above - blow chow
+
+C.key2:	hrrz	2,(2)		; find out which keyword it was
+	jrst	(2)		; and jump to the right routine
+
+K.chk:	NOISE	(entry)
+	call	Confrm
+	 jrst	Go
+	call	Chksum
+	jrst	Go
+
+K.date:	NOISE	(is)
+	movei	1,Csblk		; get new date of game
+	movei	2,[flddb.(.cmtad,,<cm%ida>)]
+	COMND
+	 ERJMP	Fatal
+	txne	1,cm%nop	; make sure it parsed ok
+	 jrst	[call	Warn
+		 jrst	Go]
+	push	p,2
+	call	Confrm		; confirm
+	 jrst	Go
+	pop	p,2
+	hrroi	1,Atmbfr
+	movx	3,ot%nmn!ot%dam!ot%sla!ot%ntm
+	ODTIM
+	move	1,Atmbfr
+	movem	1,.SCDAT(index)
+	call	Chksum		; compute new checksum for this block
+	jrst	go
+
+K.del:	NOISE	(entry)
+	call	Confrm		; erase this guy's entry
+	 jrst	Go
+	move	1,index
+	addi	1,BSIZ
+	hrls	1
+	hrr	1,index
+	movei	2,Spage-1+BSIZ*^D11
+	caml	index,2
+	 movei	2,Spage-1+BSIZ*^D22
+	blt	1,(2)
+	jrst	Go
+
+K.gold:	NOISE	(is)
+	movei	1,Csblk		; get new gold total
+	movei	2,[flddb. (.cmnum,,<^D10>)]
+	COMND
+	 ERJMP	Fatal
+	txne	1,cm%nop	; make sure it parsed ok
+	 jrst	[call	Warn
+		 jrst	Go]
+	push	p,2
+	call	Confrm
+	 jrst	Go
+	pop	p,2
+	movem	2,.SCGLD(index)
+	call	Chksum		; compute new checksum for this block
+	jrst	Go
+
+K.Levl:	NOISE	(is)
+	movei	1,Csblk
+	movei	2,[flddb.(.cmnum,,^D10)]
+	COMND
+	 ERJMP	Fatal
+	txne	1,cm%nop
+	 jrst	[call	Warn
+		 jrst	Go]
+	push	p,2
+	call	Confrm
+	 jrst	Go
+	pop	p,2
+	movem	2,.SCLEV(index)
+	call	Chksum
+	jrst	Go
+
+K.kill:	NOISE	(is)
+	movei	1,Csblk		; get new killer-character
+	movei	2,Fnblk3
+	COMND
+	 ERJMP	Fatal
+	txne	1,cm%nop	; make sure it parsed ok
+	 jrst	[call	Warn
+		 jrst	Go]
+	hrrz	3,3		; verify address of function block
+	cain	3,Fnblk3	; keyword?
+	 jrst	C.key3		; yes
+	TMSG	<
+?SCORE: Impossible function block
+>
+	jrst	K.die		; none of the above - blow chow
+C.key3:	hrrz	2,(2)		; find out which keyword it was
+	push	p,2		; ac2 contains killer-character
+	call	Confrm		; confirm
+	 jrst	Go
+	pop	p,2
+	movem	2,.SCKIL(index)
+	call	Chksum		; compute new checksum for this block
+	jrst	Go
+
+K.name:	NOISE	(is)
+	movei	1,Csblk		; get new player name
+	movei	2,[flddb.(.cmusr)]
+	COMND
+	 ERJMP	Fatal
+	txne	1,cm%nop	; make sure it parsed ok
+	 jrst	[call	Warn
+		 jrst	Go]
+	push	p,2		; save usernumber
+	call	Confrm		; confirm - text goes in atmbfr
+	 jrst	Go
+	pop	p,2
+	movem	2,.SCUSR(index)
+	call	Chksum		; compute new checksum for this block
+	jrst	Go
+
+K.show:	NOISE	(current values)
+	call	Confrm		; display this guy's entry
+	 jrst	Go
+	TMSG	<User:   >
+	movei	1,.PRIOU
+	move	2,.SCUSR(index)
+	DIRST
+	 ERCAL	[TMSG	<Illegal, value: >
+		 movei	1,.PRIOU
+		 move	2,.SCUSR(index)
+		 movx	3,no%mag!fld(^D8,no%rdx)
+		 NOUT
+		  nop
+		 RET]
+	TMSG	<
+Gold:   >
+	movei	1,.PRIOU
+	move	2,.SCGLD(index)
+	movx	3,fld(^D10,no%rdx)
+	NOUT
+	 nop
+	TMSG	<
+Date:   >
+	movei	1,.PRIOU
+	hrroi	2,.SCDAT(index)
+	movx	3,-5
+	SOUT
+	TMSG	<
+Killer: >
+	move	1,.SCKIL(index)
+	movn	2,Cmdtb3
+	hrri	2,Cmdtb3+1
+K.sho2:	move	3,(2)
+	cain	1,(3)
+	 jrst	K.sho1
+	aobjn	2,K.sho2
+	move	1,.SCKIL(index)
+	PBOUT
+	jrst	K.sho3
+K.sho1:	hlro	1,3
+	PSOUT
+K.sho3:	TMSG	<
+Level:  >
+	movei	1,.PRIOU
+	move	2,.SCLEV(index)
+	movx	3,fld(^D10,no%rdx)
+	NOUT
+	 nop
+	TMSG	<
+>
+	call	Pchksm
+	jrst	Go
+
+	page
+
+	subttl	Other routines
+
+;routine which checks for an end-of-command confirmation. Returns:
+; +1 failure
+; +2 success
+
+Confrm:	movei	1,Csblk
+	movei	2,[flddb.(.cmcfm)]
+	COMND			; confirm with carriage return
+	 ERJMP	Fatal
+	txne	1,cm%nop	; did he do it?
+	 jrst	[call	Warn	; no
+		 RET]
+	aos	(p)		; yes-skip return
+	RET
+
+;SNOACC - Called when we can't get access to score file
+
+Snoacc:	TMSG	<?SCORE: Score file is busy.  Proceed? [Y or N]>
+	PBIN
+	caie	1,"y"
+	cain	1,"Y"
+	 jrst	[TMSG	<
+>
+		 RET]
+	call	Reljfn		; couldn't open file
+	jrst	K.die
+
+Nofile:	TMSG	<?SCORE: No score file name specified
+>				; must specify file name before changes
+	jrst	Go
+
+;CHKSUM generates new chksum for entry (index)
+Chksum:	movei	1,.SCUSR(index)
+	hrli	1,-<BSIZ-1>
+	setz	temp,
+	xor	temp,(1)	; checksum it
+	aobjn	1,.-1
+	movem	temp,.SCCHK(index) ; if done, save checksum
+	RET
+
+;PCHKSM prints message if chksum is incorrect
+Pchksm:	movei	1,.SCUSR(index)
+	hrli	1,-<BSIZ-1>
+	setz	temp,
+	xor	temp,(1)		; checksum it
+	aobjn	1,.-1
+	camn	temp,.SCCHK(index)
+	 RET
+	TMSG	<Checksum is incorrect
+>
+	RET
+
+;error handling routines
+
+Fatal:	TMSG	<?SCORE >
+	call	Warn+1
+Fatal1:	HALTF
+	TMSG	<Sorry baby, no dice
+>
+	jrst	Fatal1
+
+;non-fatal jsys errors come here
+;returns: +1 always
+
+Warn:	TMSG	<%SCORE >
+	movei	1,.PRIIN
+	CFIBF			; clear typeahead
+	movei	1,.PRIOU
+	DOBE			; wait for other output
+	TMSG	<Jsys error: >
+Wrnmsg:	movei	1,.PRIOU	; type out standard error message
+	hrloi	2,.FHSLF
+	setz	3,
+	ERSTR
+	 nop			; ignore these silly errors
+	 nop
+	TMSG	<
+>
+	RET
+	page
+
+;comnd function descriptor blocks
+
+Fnblk1:	flddb.(.cmkey,,Cmdtb1)
+Fnblk2:	flddb.(.cmkey,,Cmdtb2)
+Fnblk3:	flddb.(.cmkey,,Cmdtb3)
+
+;command state block
+
+Csblk:	exp	Repars		; flags,,reparse address
+	.PRIIN,,.PRIOU		; input,,output
+	-1,,[asciz/SCORE>/]	; ^R text
+	-1,,Txtbfr		; start of text input block
+	-1,,Txtbfr		; start of user input
+	bfrsiz*5		; input buffer size
+	0			; # of unparsed characters
+	-1,,Atmbfr		; start of atom buffer
+	bfrsiz*5		; size of atom buffer
+	exp	Jfnblk		; jfn block
+
+;various storage locations
+
+Txtbfr:	block	bfrsiz+1	; comnd text input buffer
+Atmbfr:	block	bfrsiz+1	; comnd atom buffer
+Pdl:	block	pdlsiz+1	; take a guess
+
+Savesp:	z			; save stack pointer here
+Levtab:	exp	Lev1pc		; software interrupt system memory
+	exp	Lev2pc
+	exp	Lev3pc
+Lev1pc:	z
+Lev2pc:	z
+Lev3pc:	z
+Chntab:	block	^D36
+	z
+
+;command string tables
+
+Cmdtb1:	tabsiz,,tabsiz
+	[asciz/all-time/],,K.all
+	[asciz/exit/],,K.exit
+	[asciz/file/],,K.file
+	[asciz/help/],,K.help
+	[asciz/quit/],,K.qui
+	[asciz/weekly/],,K.week
+	tabsiz=.-Cmdtb1-1
+
+;more keywords
+Cmdtb2:	tb2siz,,tb2siz
+	[asciz/checksum/],,K.chk
+	[asciz/date/],,K.date
+	[asciz/delete/],,K.del
+	[asciz/gold/],,K.gold
+	[asciz/killer/],,K.kill
+	[asciz/level/],,K.levl
+	[asciz/name/],,K.name
+	[asciz/show/],,K.show
+	tb2siz=.-Cmdtb2-1
+
+Cmdtb3:	tb3siz,,tb3siz
+	[asciz/Al-miraj/],,"a"
+	[asciz/Arrow/],,")"
+	[asciz/Bat/],,"B"
+	[asciz/Blindheim/],,"b"
+	[asciz/Centaur/],,"C"
+	[asciz/Crypt-thing/],,"c"
+	[asciz/Death-knight/],,"d"
+	[asciz/Dragon/],,"D"
+	[asciz/Ettin/],,"e"
+	[asciz/Flind/],,"f"
+	[asciz/Floating-eye/],,"E"
+	[asciz/Giant-ant/],,"A"
+	[asciz/Githyanki/],,"g"
+	[asciz/Gnoll/],,"G"
+	[asciz/Hobgoblin/],,"H"
+	[asciz/Homonculous/],,"h"
+	[asciz/Intellect-devourer/],,"i"
+	[asciz/Invisible-stalker/],,"I"
+	[asciz/Jackal/],,"J"
+	[asciz/Juiblex/],,"j"
+	[asciz/Killmoulis/],,"k"
+	[asciz/Kobold/],,"K"
+	[asciz/Larva/],,"l"
+	[asciz/Leprechaun/],,"L"
+	[asciz/Magic/],,"="
+	[asciz/Mimic/],,"M"
+	[asciz/Minotaur/],,"m"
+	[asciz/Norker/],,"n"
+	[asciz/Nymph/],,"N"
+	[asciz/Orc/],,"O"
+	[asciz/Owlbear/],,"o"
+	[asciz/Phantom-stalker/],,"p"
+	[asciz/Purple-worm/],,"P"
+	[asciz/Quaggoth/],,"q"
+	[asciz/Quasit/],,"Q"
+	[asciz/Quit/],," "
+	[asciz/Revenant/],,"r"
+	[asciz/Rust-monster/],,"R"
+	[asciz/Sandman/],,"s"
+	[asciz/Snake/],,"S"
+	[asciz/Tirapheg/],,"t"
+	[asciz/Troll/],,"T"
+	[asciz/Umber-hulk/],,"U"
+	[asciz/Umpleby/],,"u"
+	[asciz/Vampire/],,"V"
+	[asciz/Violet-fungi/],,"F"
+	[asciz/Vodyanoi/],,"v"
+	[asciz/Werewolf/],,"w"
+	[asciz/Winner/],,"$"
+	[asciz/Wraith/],,"W"
+	[asciz/Xorn/],,"X"
+	[asciz/Xvart/],,"x"
+	[asciz/Yeti/],,"Y"
+	[asciz/Yulgrin/],,"y"
+	[asciz/Zallige/],,"z"
+	[asciz/Zombie/],,"Z"
+	tb3siz=.-Cmdtb3-1
+
+; other storage
+
+Sjfn:	z			; score file jfn
+Scoacc:	z			; score file access word
+Jfnblk:	block	.GJATR+1	; gtjfn block for comnd
+Fdbblk:	block	.RSTDT		; big enough to get .RSCRE
+
+	xlist
+	lit
+	list
+
+	loc	376000
+Spage:	block	1K
+End	Score

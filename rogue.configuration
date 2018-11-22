@@ -1,0 +1,59 @@
+;<RELPH.ROGUE>ROGUE.CONFIGURATION.3,  5-Oct-85 19:56:56, Edit by RELPH
+;This file contains the ROGUE file definitions, terminal type definitions,
+;and account definitions.
+;There are four files: the score file, the log file, the player names file,
+;and the startup message file, represented by the keywords SCORE-FILE,
+;LOG-FILE, NAME-FILE, and MESSAGE-FILE, respectively, for example:
+;	LOG-FILE File-Spec
+;Staff accounts are represented:
+;	STAFF Staff-Account-Name
+;and may contain wildcards.
+;Accounts which are to be denied access to ROGUE  are represented:
+;	DENY Account-Name-To-Be-Denied-Access
+;and may also contain wildcards.
+;The load average is a decimal number, for example:
+;	LOAD-AVERAGE 43
+;valid terminal types are:
+;	ANSI		Random ANSI-standard terminal (Vt100, GIGI, HDS-Avt)
+;	CONCEPT-108
+;	DATAMEDIA-2500
+;	HAZELTINE-1500
+;	HEATH-19	Heathkit H-19, Zenith Z-19 or Z-29 not in ANSI mode
+;	HP26XX		HP 2600 series terminal
+;	INFOTON-400
+;	REGENT-40	Adds Regent-40
+;	VT52		Dec VT52 compatible terminal
+;The name of the terminal is followed by the the octal monitor-specific
+;terminal type number, e.g.:
+;	VT52 17
+;These terminal type definitions are usually defined in MONSYM.MAC.
+;and remember the final <CR>!
+
+VT52 17
+HEATH-19 31
+ANSI 20				;Vt100
+ANSI 37				;Ambassador
+DATAMEDIA-2500 5
+CONCEPT-108 32
+HAZELTINE-1500 7
+HP26XX 6
+				;No infoton-400s on our system
+				;No Regent-40s either
+;staff accounts -- people who don't get the warning message.
+STAFF BCRG			;computer resources group
+STAFF BT-COS			;IG programmers
+;Account denials -- accounts of people who are disallowed.
+DENY BT-TEMP			;programmers in class 4
+DENY BIONET2-*
+DENY BIONET3-*
+;IG doesn't have any.
+
+;The important file specs:
+SCORE-FILE Ps:<Relph.Rogue>Igfoo.Bin
+LOG-FILE Ps:<Relph.Rogue>Igfoo.Log
+NAMES-FILE Ps:<Relph.Rogue>Igfoo.Nam
+MESSAGE-FILE Ps:<Relph.Rogue>Igfoo.Msg
+;The load average at which to quit games.
+LOAD-AVERAGE 0			; 0 means don't check 
+;and mailing address for BUGS
+BUG-ADDRESS Relph		;our address

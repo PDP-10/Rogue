@@ -1,0 +1,270 @@
+			Rogue Documentation
+			     for all around help...
+
+
+Scrolls
+-------------------------------------------------------------------------------
++ Enchant Weapon	"...your mace twists in your hand."    Helps weapon
++ Enchant Armor 	"...your ring mail glows blue."	       Helps armor
+- Nothing		"...you hear a rustling in the shadows." or
+        		"...this scroll appears to be blank."   No effect
++ Teleportation 	no message       Puts you somewhere else on the level.
+- Summon Monster	no message       Brings a monster next to you.
++ Remove Curse  	"...you feel as if someone is watching over you."
+		        removes the curses of all that you are using.  NOT off
+			of items in your inventory.
++ Identify		"...this is a scroll of identify-What do you want to
+			identfy?" Will give the name/details about the item
+			you give it.
+++Genocide		"You have been granted the boon of Genocide!-Which
+			monster?"  Elliminates the specific monster for the
+			rest of the game.  Very Rare!!!  Best used against
+			monster with special attacks or very tough ones.
++ Magic Mapping		"...there appears to be a map on this scroll."
+			Displays all walls, doors and corridors on that level.
++ Fear			"...you hear maniacal laughter in the distance." Causes
+			all monsters to be afraid of you for a few moves.  If
+			cornered, they will not fight back.
+- Close Portal		It closes all doors in the room that you are in.  If
+			you search, they will open back up.
++ Experience		"Suddenly you feel more skillful. Welcome to level _"
+			Moves you up 1 experience level.
+
+Staffs and Wands
+-------------------------------------------------------------------------------
++ Drain Life		One blast from this will kill whatever you aim it at
+			with a few noteable exceptions (see monsters for those
+			unaffected).
++ Fire			Hits monsters very hard:  10-30 points.
++ Lightning		Hits monsters very hard:  10-30 points.
++ Cold			Hits monsters very hard:  10-30 points.
++ Magic Missile		Hits monsters lightly:  1-10 points.
++ Striking		Hits monsters lightly:  1-10 points.
+-+Polymorph		Transforms the monster into another type of monster.
+			Weak ones get strong, and vice-versa.
++ Teleport Away		Teleports the monster away.
++ Teleport To		Teleports you to some other part of the level.
++ Curing		Adds some points to your hit point total: 10-20
+- Nothing		Does nothing.
++-Wonder		It can do what any of the other staffs/wands do.  A
+			random staff is chosen each time you fire it and it
+			will act like that staff for that one shot.  It can
+			also do bizarre things like say, "A stream of butter-
+			flies fly forth" or "Wow" or "You are eating dinner
+			with the Cleavers." The latter satisfies your hunger
+			if you are hungry or weak.
++ Alchemy		It will pick a random item out of your inventory and
+			turn it into something else.  It can turn a ration of
+			food into a potion, etc. If you drop all your good
+			things in a room that has no traps, and keep all your
+			bad things, you may be able to transform your junk
+			into something usefull.
+- Haste Monster 	Give monster 2 moves for your 1.
++ Search 		Shows you traps and closed doors.
+
+Once the wand does "nothing" it is exhausted of its magic and does nothing.
+
+Potions
+-------------------------------------------------------------------------------
++ Strength		"You feel much stronger now.  What Bulging Muscles!!"
+			Increases you strength by +1.
++ Dexterity		"You feel more nimble now.  Impressive!"  Increases
+			your dexterity by +1.
++ Intelligence		"You feel smarter now.  What a brain!"  Increases your
+			intelligence by +1.
+- Poison		"You feel sick now."  Decreases your strength by -1.
+- Fumbling		"You feel clumsy now.:  Decreases your dex by -1.
+- Feeblemindedness	"You feel stupid now."  Decreases your int by -1.
++ Regain Strength	"Hey! This potion tastes great-it makes you feel warm
+			all over!"  Restores all your strength.
++ Regain Dexterity	"The potion sends a tingling throughout your entire
+			body-Wow!"  Restores all your dexterity.
++ Regain Intelligence	"The potion makes your head spin, but now you feel
+			great."  Restores all your intelligence.
++ Magic Detection	"You sense the presence of magic"  Will display all
+			magic items on the level (potions, scrolls, staffs,
+			enchanted weapons, rings)
++ Gold detection	"You feel greedy and sense the presence of gold."
+			Will display all gold on the level.
++ Monster Detection	"...You sense the presence of monsters."  Displays all
+			monsters on the level for several moves, even the 
+			invisible ones.  This will continue to work if you go 
+			down the stairs (unlike other potions).
+- Confusion		"You feel confused."  Makes your movements go in random
+			directions for a few moves.  Spaces and staffs are
+			unaffected. (you sit still and your aim is straight.)
++ Confuse Monster	"Your hands glow red and then fades."  The next monster
+			you hit will be confused for a few moves.
+- Sleep			"you fall asleep"  The monsters all get a few free
+			moves while you are asleep.
+- Paralization		"You are frozen to the spot-You can move again."  Same
+			as sleep.
+- Slow Self		"You are moving slower now."  Gives monsters 2 moves
+			to your 1 for a few moves.
++ Haste Self		"You feel yourself moving much faster now."  You get 2
+			moves for every 1 the monsters get for a few moves.
+- Blindness		"A cloak of darkness falls around you."  The screen
+			will go blank for a very long time.  A lot of spaces or
+			quaffing a healing/extra healing potion will remedy
+			this horror of all potions.  Zapping a staff of curing
+			will fix it too.
++ Healing		"You begin to feel better." or "You feel more virile."
+			The first message add some hit points to your total.
+			(about 10-20)  The second message adds 1 to your hit
+			point potential.
++ Extra Healing		"You begin to feel much better." or "You feel much more
+			virile."  Same as healing except it will add about
+			15-30 points to your hit point total.
++ See Invisible		"Tastes like the fruit of (your fruit)"  You see invi-
+			sible monsters for the level you are on.  Lasts for
+			several moves.
+
+There are a lot of messages like, "You're not sure what that potion did" or
+"a bit of yellow liquid dribbles down your chin." Meaning that you quaffed a
+potion whose effects were not noticible because it was not needed.  The game is
+basically saying that it's not going to tell you what that potion does.
+
+Rings
+-------------------------------------------------------------------------------
++ Searching		Enables you to see most of the secret doors and traps.
++ Stealth		Causes a higher percentage of monsters to be asleep.
++ Vampiric Regeneration	You will receive a percentage of the points that you
+			hit the monster for back on your total.  In other words
+			whenever you hit a monster, a few points will be added
+			to your own total.
++ Regeneration		1 point will be added to your hit point total for every
+			move or rest you make.  This ring burns food at twice
+			the normal rate when being worn.  Use with CARE!!
+++Invisibility		When worn, you will be invisible to the monsters a
+			certain amount of the time (10-50%).  This means they
+			will occasionally move in the wrong direction when
+			trying to hit or chase you.  This ring also burns food
+			at twice the usual rate.  This is the most RARE item
+			in the entire dungeon!!!
++ Slow Digestion	Makes you use food at about 1/2 the usual rate.
++-Increase Damage	+-n Will add or subtract to the power of your hits by
+			n.
++-Protection n		Will make your armor imune to rust monsters.  Will also
+			affect you armor class by n.  Even if n<0 (ie. n is
+			added to your Ac making it less effective).
++ Teleportation		Will randomly teleport you around the dungeon level.
+			This ring is usually cursed, but can be usefull for
+			escaping tight spots once you have removed the curse.
+- Aggravate Monster	This will cause less of the monsters to be asleep and
+			fight more fiercly.  This is usually cursed.
++-n Strength		Affects your strength by n
++-n Dexterity		Affects your dexterity by n
++-n Intelligence	Affects you intelligence by n
++ Resurection 		Will enable you to die and be resurrected ONCE.  Once
+			the ring has saved you, you cannot remove it unless you
+			wish to die immediately.
+
+Weapons
+-------------------------------------------------------------------------------
+Two Handed Sword	Best possible weapon:  Hits for 3-18 points
+Silver Long Sword	Second best weapon:  Hits for 1-10 points
+Long Sword		Same as Silver long sword except no silver effect.
+			Won't kill "w" of "V".
+Mace			Standard issue weapon:  Hits for 1-6 points
+Short Bow		Ammunition = arrows or silver arrows.  Hits for 1-5 or
+			1-8(silver)
+Crossbow		Ammunition = Bolts.  Hits for 1-5 points
+Sling			Ammunition = Rocks.  Hits for 1-5 points
+Dagger			Can be weilded or thrown effectively.  Hits for 1-6
+			points.  Usually cursed.
+
+
+Monsters
+-------------------------------------------------------------------------------
+"a"	Almiraj 	wimp.
+"A"	Giant Ant	Special Attack = may sting you and take away dexterity
+			points; medium wimp.
+"b"	Blindheim	Special Attack = his gaze may blind you temporarily;
+			medium.
+"B"	Bat		wimp.
+"c"	Crypt Thing	Special Attack = may teleport you away from him during
+			battle;medium wimp
+"C"	Centaur		medium tough
+"d"	Death Knight	Special Attack = extremely magically resistant-can even
+			survive drain life blasts;  he weilds a two handed
+			sword with great bonuses which he wails on you with or
+			drops if you kill him; extremely tough!!!
+"D" 	Dragon		extremely tough!!!
+"e"	Ettin		Very tough.
+"E"	Floating Eye	Special Attack = can temporarily freeze you; wimp
+"f"	Flind		weak
+"F"	Violent Fungi	Special Attack = will ensnare you after it hits you;
+			medium
+"g"	Githyanki	weilds a silver long sword which he drops if you kill
+			him; tough
+"G"	Gnoll		weak
+"h"	Homonculous	Special Attack = can put you to sleep for a while;
+			weak
+"H"	Hobgoblin	weak
+"i"	Intelect 	Special Attack = his ego wip may take intelligence
+           Devourer	points; tough
+"I"	Invisible Stalker  Special Attack = he is invisible; tough
+"j"	Juiblex		Special Attack = he is a deamon which means he cannot
+			be harmed by silver weapons.  He stands over the Amulet
+			of Yendor which is the goal of the game.  He is always
+			placed exactly once on lever 26 or 27.  He almost never
+			misses and is capable of hitting for 40!!!
+			Extremely Extremely Tough!!!!!
+"J"	Jackel		wimp
+"k"	Killmoulis	wimp that can be on any level
+"K"	Kobold		wimp
+"l"	Larva		wimp
+"L"	Leprechaun	Special Attack = can steal some of your gold if you
+			battle him up close, but will drop some gold if you
+			kill him; medium tough
+"m"	Minotaur	medium tough
+"M"	Mimic		Special Attack = looks like an item until you try to
+			pick it up, he will ensnare you if he hits you.  He
+			is unable to move; tough
+"n"	Norker		weak
+"N"	Nymph		Special Attack = can steal an item out of your pack if
+			you battle her up close, but will drop a magic item if
+			you kill here; medium tough
+"o"	Owlbear		very tough
+"O"	Orc		wimp
+
+
+
+"p"	Phantom Stalker Special Attack = he is invisible and can polymorph into
+			any other monster; medium tough
+"P"	Purple worm	Special Attack = may swallow you whole-you get a few
+			turns to kill it from inside before he digests you and
+			thus kills you.  While you are inside, he does not hit
+			you, but he hits hard while you are on the outside;
+			medium tough
+"q"	Quagoth		weak
+"Q"	Quasit		Special Attack = magic resistant, difficult to hit;
+			fairly tough
+"r"	Revenant	Special Attack = can paralize you with fear for a few
+			moves; very tough
+"R"	Rust Monster	Special Attack = can rust your armor down a point, but
+			he does not hit you; nasty but wimp
+"s"	Sandman		Special Attack = can put you to sleep temporarily and
+			then may disapear, but doesn't hit you; weak
+"S"	Snake		difficult to hit; wimp
+"t"	Tirapheg	weak
+"T"	Troll		Special Attack = may drop something if you kill him;
+			very tough
+"u"	Umpleby		Special Attack = may zap you with electricity, is
+			immune to lightning staffs; fairly tough
+"U"	Umber hunk	Special Attack = can confuse you temporarily; extremely
+			tough!!! Hits for 40. Hardly misses.  DON'T Fuck with.
+"v"	Vodyandi	extrememly tough!!! DON'T Fuck with.
+"V"	Vampire		Special Attack = must be hit with silver weapons, if he
+			bites you he will drop you a whole experience level!!;
+			tough
+"w"	Werewolf	Special Attack = must be hit with silver weapons; weak
+"W"	Wraith		Special Attack = may take strength points, difficult to
+			hit; tough
+"x"	Xvart		weak
+"X"	Xorn		extremely tough!!!  
+"y"	Yulgrin		medium
+"Y"	Yeti		Special Attack = immune to cold staffs; fairly tough
+"z"	Zallige		Special Attack = immune to drain life staffs; extremely
+			tough!!!  
+"Z"	Zombie		weak

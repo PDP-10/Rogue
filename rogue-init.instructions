@@ -1,0 +1,31 @@
+
+	I have noticed that  you enjoy changing your  name when playing  Rogue.
+This is fine, and I don't care what you change it to.  However, you should know
+that there is a way to get Rogue to give you the same name and option  settings
+each game, without you having  to set them yourself.  What  you do is create  a
+file in your directory called  ROGUE.INIT.  In this you  can put what you  want
+your defaults to be.  Rogue always  looks in your CONNECTED directory for  this
+file. To set your name, put a line in the file like:
+
+	name The Rogue King
+
+To set the fruit name, do this:
+
+	fruit Watermelon
+
+To set the save file, do this:
+
+	save PS:<directory-name>rogue.save
+
+To set a option  (make it true) put  its name in the  file, each on a  separate
+line: The seven  options are  named 'terse', 'flush',  'slow', 'turn',  'jump',
+'ask', and 'tomb'.  To make a option false, either omit its name or precede  it
+with 'no'.   Note that  since Rogue  uses COMND  to parse  the lines,  you  can
+abbreviate the keywords ('name', 'ask', etc.)  as short as you want as long  as
+they remain unique.  Also,  this requires that  you be sure  to put a  carriage
+return at the end of each line,  ESPECIALLY the last (many people often  forget
+this).
+
+	Happy adventuring!
+
+					Rogue Maintainers

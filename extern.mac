@@ -1,0 +1,2279 @@
+; <RELPH.ROGUE>EXTERN.MAC.245, 12-Nov-87 17:23:34, Edit by RELPH
+; #36 make error messages consistent, change name to ECL Rogue
+; <RELPH.ROGUE>EXTERN.MAC.244,  1-Apr-87 12:00:27, Edit by RELPH
+; #35 Check date of image, print it in Type.v
+; [ECLC]PS:<RELPH.ROGUE>EXTERN.MAC.243,  9-Dec-84 02:41:20, Edit by RELPH
+; #34 add Regent-40 terminal type, ask if we don't know what terminal.
+; [ECLC]PS:<RELPH.ROGUE>EXTERN.MAC.230, 12-Nov-84 16:13:15, Edit by RELPH
+; #33 add tombstone switch.  Add winner to reasons.
+; [ECLC]PS:<RELPH.ROGUE>EXTERN.MAC.226, 10-Sep-84 09:34:34, Edit by RELPH
+; #32 move DCA,CLS,CLL routines to extern. Change format of score file.
+; [ECLC]PS:<RELPH.ROGUE>EXTERN.MAC.220, 18-Jul-84 21:29:41, Edit by RELPH
+; #31 fix possible problem with EDELET.  Also with Flush..
+; [ECLC]PS:<RELPH.ROGUE>EXTERN.MAC.217,  4-Jul-84 03:48:50, Edit by RELPH
+; #30 fix filenames to be in Terminal File, change name to configuration file
+; <RELPH.ROGUE>EXTERN.MAC.204,  7-May-84 15:59:36, Edit by RELPH
+; #29 fix ^T to output to string.
+; <RELPH.ROGUE>EXTERN.MAC.202,  2-May-84 16:59:23, Edit by RELPH
+; #28 Fix gloads to get the correct load average.  JSYS documentation wrong.
+; <RELPH.ROGUE>EXTERN.MAC.201, 16-Apr-84 17:21:08, Edit by RELPH
+; #27 make account string equal username if not running accounting.
+; <RELPH.ROGUE>EXTERN.MAC.200, 16-Apr-84 11:37:36, Edit by RELPH
+; #26 add game checker.  Fix setting of slow switch if unknown speed.
+; <RELPH.ROGUE>EXTERN.MAC.193, 30-Mar-84 13:14:19, Edit by RELPH
+; #25 add HP terminal support
+; <RELPH.ROGUE>EXTERN.MAC.192, 27-Mar-84 00:49:23, Edit by RELPH
+; #24 fix a few things, change ^T format, save reason for byebye in Logplayer
+; <RELPH.ROGUE>EXTERN.MAC.185, 23-Feb-84 14:30:45, Edit by RELPH
+; #23 add version setup routine for save.self, Type_version, bigger Termtab
+; <RELPH.ROGUE>EXTERN.MAC.172, 19-Nov-83 11:47:29, Edit by RELPH
+; #22 add Hazeltine-1500 support.
+; <RELPH.ROGUE>EXTERN.MAC.157, 14-Nov-83 18:15:31, Edit by RELPH
+; #21 add logging functions for MARK
+; <RELPH.ROGUE>EXTERN.MAC.152,  9-Aug-83 22:28:36, Edit by RELPH
+; #20 add I.xor function for DM2500 terminal handling
+; <RELPH.ROGUE>EXTERN.MAC.151, 19-Jul-83 21:27:02, Edit by RELPH
+; #19 fix terminal stuff so it's quicker to add one.
+; <RELPH.ROGUE>EXTERN.MAC.137, 18-Jul-83 12:38:54, Edit by RELPH
+; #18 Add Concept 108 support, fix denied-score access stuff
+; <RELPH.ROGUE>EXTERN.MAC.132, 14-Jul-83 10:37:40, Edit by RELPH
+; #17 Add denial of access by accounts
+; <RELPH.ROGUE>EXTERN.MAC.127,  6-Jul-83 20:15:08, Edit by RELPH
+; #16 add infoton-400 terminal handling.
+; <RELPH.ROGUE>EXTERN.MAC.122,  6-Jun-83 05:44:24, Edit by RELPH
+; #15 stop snarfing interrupts for unused control characters
+; <RELPH.ROGUE>EXTERN.MAC.121	 1-Jun-83 01:31:20	Edit by RELPH
+; #14 Add DM2500 terminal type
+; <RELPH.ROGUE>EXTERN.MAC.113	 7-May-83 12:54:38	Edit by RELPH
+; <RELPH.ROGUE>EXTERN.MAC.111	 6-May-83 15:31:05	Edit by RELPH
+; <RELPH.ROGUE>EXTERN.MAC.106	 3-May-83 21:21:30	Edit by RELPH
+; #13 Fix scores stuff to always change on sunday
+; <RELPH.ROGUE>EXTERN.MAC.104	 2-May-83 20:51:07	Edit by RELPH
+; #12 Take out date stuff in GETFDB
+; <RELPH.ROGUE>EXTERN.MAC.102	26-Apr-83 18:48:21	Edit by RELPH
+; #11 Look for INIT file in Logged in directory if not in CD
+; <RELPH.ROGUE>EXTERN.MAC.99	26-Apr-83 12:42:37	Edit by RELPH
+; #10 Bug in Stafbg: reading Bug-Address
+; <RELPH.ROGUE>EXTERN.MAC.94	25-Apr-83 14:52:04	Edit by RELPH
+; #9 fixed bug in Init.s
+; <RELPH.ROGUE>EXTERN.MAC.93	24-Apr-83 01:05:24	Edit by RELPH
+; #8 bug in Read.f, blew away if reparsed
+; <RELPH.ROGUE>EXTERN.MAC.90	23-Apr-83 22:57:58	Edit by RELPH
+; #7 Routine to read a file name from terminal (GTJFN)
+; <RELPH.ROGUE>EXTERN.MAC.76	22-Apr-83 16:18:22	Edit by RELPH
+; #6 Add code to read TURN_SWI from Init file
+; #5 Bug in checking for staff account people.
+; #4 <RELPH.ROGUE>EXTERN.MAC.71	19-Apr-83 23:50:14	Edit by RELPH
+; #4 Parse Bug-address, allow wildcarded accounts, fix ^T
+; <RELPH.ROGUE>EXTERN.MAC.63	18-Apr-83 21:05:37	Edit by RELPH
+; #3 Fix Null line entry for Termtab file to quit.
+; <RELPH.ROGUE>EXTERN.MAC.62	16-Apr-83 21:05:56	Edit by GARY
+; #2 Add Ctrl.T command
+; <RELPH.ROGUE>EXTERN.MAC.51	15-Apr-83 04:39:51	Edit by RELPH
+; <RELPH.ROGUE>EXTERN.MAC.46	15-Apr-83 03:29:43	Edit by RELPH
+; #1 make TERMTAB and staffy table to be in external COMND parseable
+; #1 text file specified upon SETUP.  Easier than MACRO code to change
+; #1 and requires no extra macro files.
+; #3 put in control-t routine
+; External routines for ROGUE
+;
+; Author: Gary Craig
+; May-December,1982
+; USC-ECL
+;
+
+	title EXTERN - External routines for ECL ROGUE
+	subttl	Definitions, etc.
+	search	monsym,macsym,jobdat
+
+	entry	Fatal,Settty,Restty,Comand,Scores,Rdinit,Valid,Interr,Deinte
+	entry	Getfdb,Fiddle,Isddt,Logplayer,Edelet,Rescan,Ctrl.t
+	entry	Save.s,Save.r
+	entry	Staffy,Trmchk,Init.s	; #4 New entry points
+	entry	Noplay			; #17 another stupid routine
+	entry	Logini			; #21 for logging functions
+	entry	Type.v			; #23 for typing the version
+	entry	Game.C			; #26 game check.
+	entry	DCA,CLS,CLL,BKSP,DNSP	; #32 screen routines
+	entry	Chk.fi			; #32
+
+;EQUATES
+	.JBVER=:137			; #23 same here
+	a==1
+	b==2
+	c==3
+	d==4
+	t=0
+	index=5
+	blttop=6
+	savblt=7
+	chksum=10
+	alltim=12			; address of start of all-time scores
+	weekly=13			; address of start of weekly scores
+	this=14
+	p=17				; stack pointer
+	bsiz==20			; size of score file block
+	bfrsiz==20			; size of comnd input buffer
+	atmsiz==20			; size of comnd atom buffer
+
+	.true==1			; #30
+	.false==0			; #30
+
+Define	JFATAL	($MSG)			;; Fatal JSYS error handler
+<IFB	<$MSG>,<ERJMP	Fatal>
+ IFNB	<$MSG>,<ERJMP	[TMSG	<?ROGUE: $MSG : >
+			 jrst	Fatal3]>>
+
+Define	JWARN	($MSG)
+<IFB	<$MSG>,<call	Warn>
+ IFNB	<$MSG>,<call	[TMSG	<%ROGUE: $MSG : >
+			 jrst	Warn1]>>
+
+;Define	Comnd/Tbluk Macros
+
+Define	TABLE	
+<	..tab==.
+	z>
+
+Define	T	(key,add,bits)	;; Entries must be in alphabetical order
+<	..add==add
+	ifb	<add>,<..add==key>
+	[ifnb	<bits>,<cm%fw!bits>
+	 asciz	/key/],,..add
+	purge	..add>
+
+Define	TEND
+<	..end==.
+	reloc	..tab
+	..tab==..end-..tab-1
+	xwd	..tab,..tab
+	reloc	..end
+	purge	..tab,..end>
+
+;MIT VTSOP% definitions
+	opdef	VTSOP%	[JSYS	635]	; #35 MIT Visual Terminal
+	.VTBCK==2			; BS
+	.VTDWN==4			; LF
+	.VTMOV==7			; DCA
+	.VTHOM==10			; Home
+	.VTCLR==15			; CLS
+	.VTCEL==17			; CLL
+	vt%ad1==200000,,000000		; additional arg 1
+
+	page
+
+Tother:	hrroi	1,[byte (7) .CHCRT,.CHLFD,.CHNUL] ; #34 <CR>
+	PSOUT
+	RET
+
+; #32 Terminal handling
+; 2/ X  3/ Y  y is vertical, x is horiz
+; TM_vt52,TM_ansi,TM_dm2500,TM_inf400,TM_con108,TM_hz1500,TM_hp
+DCA:	move	4,Term
+	xct	[jrst	Tother		; #34 other (do <CR>)
+		 jrst	Dca.v5		; vt52
+		 jrst	Dca.an		; ansi
+		 jrst	Dca.dm		; datamedia
+		 jrst	Dca.i4		; infoton 400
+		 jrst	Dca.cn		; concept 100/108
+		 jrst	Dca.hz		; hazeltine
+		 jrst	Dca.hp		; HP
+		 jrst	Dca.r4		; Regent-40
+		 jrst	Dca.Vt](4)	; #35 MIT VTS
+Dca.vt:	movei	1,.PRIOU
+	movsi	3,-1(3)			; #35 less one
+	hrri	3,-1(2)			; #35 again
+	movx	2,vt%ad1+.VTMOV		; #35 coords + func
+	VTSOP%
+	 JFATAL	<VTSOP% failed>
+	RET
+Dca.v5: move	1,[point 7,Atmbfr]
+	movei	4,.CHESC
+	idpb	4,1
+	movei	4,"Y"
+	idpb	4,1
+	addi	3,37
+	idpb	3,1
+	addi	2,37
+	idpb	2,1
+	setz	4,
+	idpb	4,1
+	hrroi	1,Atmbfr
+	PSOUT
+	RET
+Dca.an:	move	1,[point 7,Atmbfr]
+	movei	4,.CHESC
+	idpb	4,1
+	movei	4,"["
+	idpb	4,1
+	move	4,2
+	move	2,3
+	movx	3,fld(^D10,no%rdx)
+	NOUT
+	 nop
+	movei	2,";"
+	idpb	2,1
+	move	2,4
+	NOUT
+	 nop
+	movei	4,"H"
+	idpb	4,1
+	setz	4,
+	idpb	4,1
+	hrroi	1,Atmbfr
+	PSOUT
+	RET
+;TM_dm2500 : Write(tty,Ctrl_L,Chr(I_Xor(X-1,140B)),Chr(I_Xor(Y-1,140B)))
+Dca.dm:	move	1,[point 7,Atmbfr]
+	movei	4,.CHFFD
+	idpb	4,1
+	subi	2,1
+	xori	2,140
+	idpb	2,1
+	subi	3,1
+	xori	3,140
+	idpb	3,1
+	movei	4,.CHNUL
+	idpb	4,1
+	hrroi	1,Atmbfr
+	PSOUT
+	RET
+;TM_inf400 : Write(tty,Esc,'[',Y:0,';',X:0,'H')
+Dca.i4:	jrst	Dca.an
+;;TM_con108 : Write(tty,Esc,'a',Chr(Y+31),Chr(X+31),Zero,Zero,Zero,Zero,Zero);
+Dca.cn:	move	1,[point 7,Atmbfr]
+	movei	4,.CHESC
+	idpb	4,1
+	movei	4,"a"
+	idpb	4,1
+	addi	3,37
+	idpb	3,1
+	addi	2,37
+	idpb	2,1
+	movei	4,.CHNUL
+	movei	5,5
+	idpb	4,1
+	sojg	5,.-1
+	hrroi	2,Atmbfr
+	movei	1,.PRIOU
+	movei	3,-<^D9>
+	SOUT
+	RET
+;TM_hz1500 : Write(tty,'~',Chr(21B),Chr(X-1),Chr(Y-1))
+Dca.hz:	move	1,[point 7,Atmbfr]
+	movei	4,"~"
+	idpb	4,1
+	movei	4,.CHCNQ
+	idpb	4,1
+	subi	2,1
+	idpb	2,1
+	subi	3,1
+	idpb	3,1
+	movei	4,.CHNUL
+	idpb	4,1
+	movei	1,.PRIOU
+	hrroi	2,Atmbfr
+	movei	3,-<^D4>
+	SOUT
+	RET
+;TM_hp : Write(tty,Esc,'&a',Y-1:0,'r',X-1:0,'C')
+Dca.hp:	move	1,[point 7,Atmbfr]
+	movei	4,.CHESC
+	idpb	4,1
+	movei	4,"&"
+	idpb	4,1
+	movei	4,"a"
+	idpb	4,1
+	move	4,2
+	subi	3,1
+	move	2,3
+	movx	3,fld(^D10,no%rdx)
+	NOUT
+	 nop
+	movei	2,"r"
+	idpb	2,1
+	subi	4,1
+	move	2,4
+	NOUT
+	 nop
+	movei	2,"C"
+	idpb	2,1
+	movei	4,.CHNUL
+	idpb	4,1
+	hrroi	1,Atmbfr
+	PSOUT
+	RET
+;Regent-40: like Vt52
+DCa.r4:	jrst	Dca.v5			; #34
+
+	page
+CLS:	move	2,Term
+	xct	[jrst	Tother		; #34 do <CR> for others
+		 jrst	Cls.v5
+		 jrst	Cls.an
+		 jrst	Cls.dm
+		 jrst	Cls.i4
+		 jrst	Cls.cn
+		 jrst	Cls.hz
+		 jrst	Cls.hp
+		 jrst	Cls.r4
+		 jrst	Cls.vt](2)	; DTRT
+Cls.vt:	movei	1,.PRIOU
+	movx	2,.VTHOM		; #35 home
+	VTSOP%
+	 JFATAL	<VTSOP% failed>
+	movx	2,.VTCLR		; #35 clear screen
+	VTSOP%
+	 JFATAL	<VTSOP% failed>
+	RET
+Cls.v5:	hrroi	1,[byte	(7) .CHESC,"H",.CHESC,"J",.CHNUL]
+	PSOUT
+	RET
+Cls.an:	hrroi	1,[byte (7) .CHESC,"[","H",.CHESC,"[","J",.CHNUL]
+	PSOUT
+	RET
+;TM_dm2500 : Write(tty,Chr(2),Chr(31))
+Cls.dm:	hrroi	1,[byte (7) .CHCNB,^D31,.CHNUL]
+	PSOUT
+	RET
+;TM_inf400 : Write(tty,Esc,'[H',Esc,'[J',Zero,Zero,Zero,Zero,Zero)
+Cls.i4:	movei	1,.PRIOU
+	hrroi	2,[byte (7) .CHESC,"[","H",.CHESC,"[","J",0,0,0,0,0,.CHNUL]
+	movei	3,-<^D11>
+	SOUT
+	RET
+;TM_con108 : Write(tty,Esc,'?',Ctrl_L)
+Cls.cn:	hrroi	1,[byte (7) .CHESC,"?",.CHFFD,.CHNUL]
+	PSOUT
+	RET
+;TM_hz1500 : Write(tty,'~',Chr(21B),Zero,Zero,'~',Chr(30B))
+Cls.hz:	movei	1,.PRIOU
+	hrroi	2,[byte (7) "~",.CHCNQ,.CHNUL,.CHNUL,"~",.CHCNX,.CHNUL]
+	movx	3,-<^D6>
+	SOUT
+	RET
+;TM_hp : Write(tty,Esc,'H',Esc,'J')
+Cls.hp:	jrst	Cls.v5
+	RET
+;Regent-40: '^L'
+Cls.r4:	movei	1,.CHFFD		; clears screen, moves home
+	PBOUT
+	RET
+
+	page
+Cll:	move	2,Term
+	xct	[RET			; #34 do nothing for other terminals
+		 jrst	Cll.v5
+		 jrst	Cll.an
+		 jrst	Cll.dm
+		 jrst	Cll.i4
+		 jrst	Cll.cn
+		 jrst	Cll.hz
+		 jrst	Cll.hp
+		 jrst	Cll.r4
+		 jrst	Cll.vt](2)	; DTRT
+Cll.vt:	movei	1,.PRIOU
+	movx	2,.VTCEL		; clear to end of line
+	VTSOP%
+	 JFATAL	<VTSOP% failed>
+	RET
+Cll.v5:	hrroi	1,[byte (7) .CHESC,"K",.CHNUL]
+	PSOUT
+	RET
+Cll.an:	hrroi	1,[byte (7) .CHESC,"[","K",.CHNUL]
+	PSOUT
+	RET
+;TM_dm2500 : Write(tty,Chr(23))
+Cll.dm:	movei	1,.CHCNW
+	PBOUT
+	RET
+;TM_inf400 : Write(tty,Esc,'[N',Zero,Zero)
+Cll.i4:	movei	1,.PRIOU
+	hrroi	2,[byte (7) .CHESC,"[","N",.CHNUL,.CHNUL,.CHNUL]
+	movx	3,-<^D5>
+	SOUT
+	RET
+;TM_con108 : Write(tty,Esc,Chr(19),Zero,Zero,Zero,Zero,Zero,Zero,Zero)
+Cll.cn:	movei	1,.PRIOU
+	hrroi	2,[byte (7) .CHESC,.CHCNS,0,0,0,0,0,0,0,.CHNUL]
+	movx	3,-<^D9>
+	SOUT
+	RET
+;TM_hz1500 : Write(tty,'~',Chr(17B))
+Cll.hz:	hrroi	1,[byte (7) "~",.CHCNO,.CHNUL]
+	PSOUT
+	RET
+;TM_hp : Write(tty,Esc,'K')
+Cll.hp:	jrst	Cll.v5
+	RET
+;Regent-40: like vt52
+Cll.r4:	jrst	Cll.v5			; #34
+
+Bksp:	move	1,Term
+	cain	1,.VTSUP
+	 jrst	Bks.vt			; #35
+	movei	1,.CHBSP
+	PBOUT
+	RET
+Bks.vt:	movei	1,.PRIOU
+	movx	2,.VTBCK
+	VTSOP%
+	 JFATAL	<VTSOP% failed>
+	RET
+
+Dnsp:	move	1,Term
+	cain	1,.VTSUP
+	 jrst	Dns.vt			; #35
+	movei	1,.CHLFD
+	PBOUT
+	RET
+Dns.vt:	movei	1,.PRIOU
+	movx	2,.VTDWN		; #35
+	VTSOP%
+	 JFATAL	<VTSOP% failed>
+	RET
+	page
+
+; #26 game check.
+Game.C:	skipg	Gcload			; is there a load average?
+	 jrst	[setzm	1(p)		; nope, return false
+		 RET]
+	call	Gloads			; yes, get it
+	fix	3,2			; round it off
+	setzm	1(p)			; default false again
+	caml	3,Gcload		; compare
+	 aos	1(p)			; return true, too many people
+	RET
+
+; #26 get the fatal load average
+Getcld:	movei	2,[flddb.(.cmnum,,^D10)] ; #26 get decimal
+	COMND
+	 ERJMP	[TMSG	<%ROGUE: bad load average
+>
+		 jrst	Tsteof]
+	txne	1,cm%nop
+	 jrst	[JWARN	<bad load average>
+		 jrst	Staff2]
+	move	6,2			; #19 save number
+	jsr	Fconfm
+	movem	6,Gcload
+	jrst	Staff2
+
+;Type the version number
+Type.V:	TMSG	<This is ECL Rogue (for Tops-20)>
+	movei	1,.FHSLF		; #23 the entry vector for this fork
+	GEVEC
+	 ERJMP	Typev1
+	skipn	5,2(2)		; #23 get our version
+	 jrst	Typev1		; none, return
+	movei	1,.PRIOU
+	FMSG	<, version >
+	load	2,vi%maj,5	; get the major version
+	movx	3,fld(^D8,no%rdx) ; octal
+	NOUT
+	 nop
+	load	3,vi%min,5	; get the minor version
+	jumpe	3,Typev2	; no minor version, do edit number
+	movei	2,"."
+	BOUT
+	move	2,3		; get number
+	movx	3,fld(^D8,no%rdx)
+	NOUT
+	 nop
+Typev2:	movei	2,"("
+	BOUT
+	hrrz	2,5		; get the edit number
+	movx	3,fld(^D8,no%rdx)
+	NOUT
+	 nop
+	movei	2,")"
+	BOUT
+	load	3,vi%who,5	; get the editor
+	jumpe	3,Typev1	; no edit, print date now
+	movei	2,"-"
+	BOUT
+	move	2,3
+	movx	3,fld(^D8,no%rdx)
+	NOUT
+	 nop
+Typev1:				; #35 begin edit
+	move	1,[xwd	.FHSLF,Typev1/1K] ; use RMAP to get a jfn for a
+	RMAP			; page of the current process
+	 ERJMP	Typev3		; no file
+	hlrzs	1		; JFN in right half
+	move	5,1		; save the JFN
+	move	2,[xwd	1,.FBCRV] ; get the creation date
+	movei	3,4		; save in AC4
+	GTFDB
+	 ERJMP	Typev3
+	movei	1,.PRIOU
+	hrroi	2,[asciz /, /]
+	setzb	3,
+	SOUT
+	move	2,4
+	movx	3,ot%ntm!ot%scl	; put dashes
+	ODTIM
+Typev3:				; #35 end edit
+	TMSG	<
+>
+	RET
+
+	Subttl	Get a character from the terminal, check terminal type, etc.
+Comand:	PBIN				; get a character
+	andi	1,177	          	; lop off parity
+	movem	1,1(p)			; store it on stack
+	RET				; and return
+	page
+
+	subttl	Set up initial tty modes
+
+;SETTTY - Used for setting up initial terminal modes
+
+Settty:	hrroi	1,[asciz /TTY:/]
+	STDEV                   	; get designator for tty:
+	 JFATAL
+	move	1,2
+	RFMOD				; get old mode word
+	txz	2,3B29			; put terminal in binary
+	SFMOD
+	RFCOC				; get ccoc words
+	txz	3,1B19			; set to send escapes
+	SFCOC				; all that just to be able to clear
+					;   the stupid screen!
+	RET
+	page
+
+	subttl	Reset tty modes when through
+
+; RESTTY - resets terminal modes, ccoc's, etc.
+
+Restty:	hrroi	1,[asciz /TTY:/]	; get designator for tty:
+	STDEV
+	 JFATAL
+	move	1,2
+	RFMOD				; get old more word
+	txo	2,1B29			; put terminal in ascii
+	SFMOD				; done!
+	RET
+	page
+
+	subttl	Initialize interrupt channels
+
+; INTERR - Sets up the software interrupt system
+
+Interr:	movei	1,.FHSLF		; get player's capabilities
+	RPCAP
+	 JFATAL
+	txnn	2,sc%ctc		; see if this guy can trap ^C
+	 jrst	[TMSG <
+?ROGUE: Insufficient capabilities>	; he can't - so he can't play either
+		 HALTF
+		 jrst	.]
+	txo	3,sc%ctc		; he can - so enable him to do it
+	EPCAP
+	 JFATAL
+	movei	1,-5			; set up to trap terminal interrupts
+	move	2,[737330,,267000]	; #15  on all characters for entire job
+	STIW
+	 JFATAL
+	RET
+
+; DEINTERRUPT - Called at end of game to reset terminal
+
+Deinte:	movei	1,-5			; reset terminal interrupt word for
+	seto	2,			;   the entire job
+	STIW				; do it
+	 JFATAL
+	RET				; and return
+
+; #28 code to get load average.... from EXEC
+Gloads:	movei	2,3		; Arg block in 3
+	movei	1,.SKRCV	; Read status
+	movei	3,2		; Specify a 2-word block
+	SKED%			; Get the info
+	jxn	4,sk%stp,Gload1	; if scheduler off, do the no routine
+	movei	1,.SAJUS+1	; get the size of the block
+	movem	1,Glblk+.SACNT	; Allocate room in block
+	setom	Glblk+.SAJOB	; put in job number
+	movei	2,Glblk		; get the address of the block
+	movei	1,.SKRJP	; read job parameters
+	SKED%
+	move	1,Glblk+.SAJCL	; get job class
+	movem	1,Glblk+.SACLS	; put in the block
+	movei	1,.SA15L+1	; get the size of the block
+	movem	1,Glblk+.SACNT	; Allocate room in block
+	movei	1,.SKRCS	; Now get load averages for the class
+	movei	2,Glblk		; and the block address
+	SKED%
+	skipe	Glblk+.SA1ML	; no 1 minute?
+	 jrst	Gload2		; there is, ok
+Gload1:	move	1,[xwd	14,.SYSTA] ; First system load average is word 14
+	GETAB
+	 nop
+	movem	1,Glblk+.SA1ML	; Store the load averages
+	move	1,[xwd	15,.SYSTA]
+	GETAB
+	 nop
+	movem	1,Glblk+.SA5ML
+	move	1,[xwd	16,.SYSTA]
+	GETAB
+	 nop
+	movem	1,Glblk+.SA15L
+
+Gload2:	move	4,[xwd	Glblk+.SA1ML,1] ; Move load avs into AC's
+	blt	4,3		; Get class, 1M load, 5M load, 15M load
+	RET
+
+Glblk:	block	10
+	
+Ctrl.t:	hrro	1,2			; #29 get the string address as pointer
+	FMSG	<ROGUE >
+	seto	2,
+	movx	3,ot%nda!ot%12h!ot%nsc!ot%scl ; #4 time only
+	ODTIM
+	FMSG	<, Load >
+	movem	1,Sav.p			; #29 save the pointer
+	call	Gloads			; #4 get the load averages
+	move	2,1			; #24 get the right number
+	move	1,Sav.p
+	movx	3,fl%one!fl%pnt!fld(4,fl%rnd)!fld(0,fl%fst)!fld(3,fl%snd)
+	FLOUT				; #4 output funny digits
+	 ERCAL	[FMSG	<!>
+		 RET]
+	FMSG	<, Used >
+	movem	1,Sav.p
+	movei	1,.FHSLF		; #24 get our runtime
+	RUNTM
+	sub	1,Inirun		; subtract start runtime
+	idiv	1,2			; get seconds
+	movem	1,Inirun		; save it
+	idivi	1,^D3600		; get hours
+	idivi	2,^D60			; get minutes and seconds
+	dmovem	2,1(p)			; save the times
+	move	2,1
+	move	1,Sav.p
+	movx	3,no%lfl!no%zro!fld(2,no%col)!fld(^D10,no%rdx)
+	jumpe	2,Ctrl.1
+	NOUT
+	 nop
+	movei	2,":"
+	BOUT
+Ctrl.1:	move	2,1(p)			; get minutes
+	NOUT
+	 nop
+	movei	2,":"
+	BOUT
+	move	2,2(p)			; get hours
+	NOUT
+	 nop
+	FMSG	<, Usage >
+	movem	1,Sav.p
+	TIME%
+	sub	1,Initim		; get time used
+	idiv	1,2			; make it seconds
+	move	4,1
+	movei	1,.FHSLF		; get our runtime
+	RUNTM
+	sub	1,Inirun		; subtract start runtime
+	idiv	1,2			; get seconds
+	move	2,1
+	move	1,Sav.p
+	imuli	2,^D100			; make it percentage
+	idiv	2,4			; get percentage of time used
+	movx	3,no%lfl!no%zro!fld(2,no%col)!fld(^D10,no%rdx)
+	NOUT
+	 nop
+	move	5,(p)			; #24 get the reason
+	movei	2,"%"
+	BOUT
+	RET				; and done
+	page
+
+	subttl	Save new core image
+
+; SAVE.R-STAT - routine to save new r-stat core image after setup (ok, so
+;   I'm lazy.  Big deal.)
+; SAVE.SELF - routine to save new core image after setup
+; Save_Self(version,update,edit : integer);
+
+Save.s:	call	Setver			; #23 set up the version stuff
+	hrroi	2,[asciz /Rogue.Exe/]
+	jrst	save.1
+Save.r:	hrroi	2,[asciz /R-Stat.Exe/]
+Save.1:	move	3,2
+	movx	1,gj%fou!gj%sht!gj%new+.GJDEF	; get jfn on save file name
+	GTJFN
+	 ERJMP	[TMSG	<?ROGUE: Can't get JFN for >
+		 move	3,1
+		 PSOUT
+		 TMSG	< : >
+		 jrst	Fatal3]
+	hrli	1,.FHSLF		; current process
+	setz	3,
+	move	2,[-777,,ss%cpy+ss%exe]	; save all pages, copy-on-write, xonly
+	SSAVE
+	 JFATAL	<Can't save core-image>
+	RET				; return
+
+;SETVER	-- set the version of the file, see parameters for Save_Self and 
+;	 Save_R-stat.  Acs 2,3,4
+Setver:	movx	1,fld(6,vi%who)
+	stor	2,vi%maj,1		; #23 store the version
+	stor	3,vi%min,1		; #23 store minor version
+	stor	4,vi%edn,1		; #23 store edit number
+	movem	1,.JBVER		; #23 save the version
+	move	5,1			; #23 save this for a sec
+	movei	1,.FHSLF		; #23 the entry vector for this fork
+	GEVEC
+	 JFATAL
+	movem	5,2(2)			; #23 save our version in entvec pos
+	RET
+
+	subttl	Log usage
+
+; #21 LOGINI - Starts the logging for a player.
+
+Logini:	GTAD			; get the date
+	movem	1,Inidat	; save the initial date
+	movei	1,.FHSLF	; this process
+	RUNTM			; get the runtime
+	movem	1,Inirun	; save initial runtime
+	TIME%			; get the initial uptime
+	movem	1,Initim	; save it
+	RET
+
+; LOGPLAYER - Enters the name and time of all rogue games
+
+Logpla:	push	p,2			; save parameter address
+	push	p,3			; #24 save reason for ending
+	movx	1,gj%sht!gj%old		; get jfn for log file
+	setz	5,			; #32 set counter to zero
+	hrro	2,2			; make parameter a byte pointer
+	GTJFN
+	 ERJMP	Logpl8
+	movem	1,Ljfn
+	move	2,[xwd	1,.FBBYV]	; get the page count
+	movei	3,4			; return in AC4
+	GTFDB
+	 ERJMP	[setz	4,		; #23 funny error
+		 jrst	Logpl6]
+	andx	4,fb%pgc		; get page count
+Logpl6:	movx	2,fld(7,of%bsz)!fld(.GSNRM,of%mod)!of%app!of%rtd
+	caile	4,^D60			; more than 60 pages?
+	 movx	2,fld(7,of%bsz)!fld(.GSNRM,of%mod)!of%wr!of%rtd
+Logpl7:	OPENF
+	 jrst	Logpl1
+	jrst	Logpl2
+Logpl1:	caie	1,OPNX9			; invalid simultaneous access?
+	cain	1,DELFX2		; file cannot be expunged because...
+	 skipa
+	jrst	[move	1,Ljfn		; release jfn if couldn't
+		 RLJFN
+		  trn
+		 TMSG	<?ROGUE: Can't open log file : >
+		 jrst	Fatal2]		; #1
+	caig	5,0
+	 call	[TMSG	<Wait...>
+		 RET]
+	cail	5,^D60
+	 jrst	[move	1,LJfn
+		 RLJFN
+		  trn
+		 jrst	Logpl8]
+	movei	1,^D1000
+	DISMS
+	move	1,Ljfn
+	aoja	5,Logpl7
+Logpl2:	caie	5,0
+	 call	CLS
+	GJINF				; get user number
+	move	2,1
+	move	1,Ljfn
+	DIRST				; translate to user name and output
+	 nop				; #21 to log file
+	movei	2," "
+	BOUT				; #24 type a nice separator
+	hrroi	1,Atmbfr		; #24 get the date
+	move	2,Inidat		; #21 get start date
+	movx	3,ot%spa!ot%4yr!ot%ntm!ot%scl ; #24 nothing but date
+	ODTIM				; and output that to log file too
+	subi	1,1			; #24 back up over year
+	movei	2,.CHNUL
+	idpb	2,1			; #24 end after month name
+	move	1,Ljfn			; #24 get the JFN
+	hrroi	2,Atmbfr
+	setzb	3,4
+	SOUT
+	movei	2," "
+	BOUT
+	move	2,Inidat
+	movx	3,ot%nda!ot%nsc!ot%scl	; #24 no date
+	ODTIM
+	hrroi	2,[asciz / > /]
+	setzb	3,4
+	SOUT
+
+	hrroi	1,Txtbfr
+	seto	2,			; #24 current time
+	movx	3,ot%spa!ot%ntm!ot%4yr!ot%scl
+	ODTIM
+	subi	1,1			; back up over year
+	movei	2,.CHNUL
+	idpb	2,1
+	hrroi	1,Atmbfr
+	hrroi	2,Txtbfr
+	STCMP
+	jumpe	1,Logpl3
+	move	1,Ljfn
+	hrroi	2,Txtbfr
+	setzb	3,4
+	SOUT
+	movei	2," "
+	BOUT
+Logpl3:	move	1,Ljfn
+	seto	2,
+	movx	3,ot%spa!ot%nsc!ot%nda!ot%scl
+	ODTIM
+	hrroi	2,[asciz /, /]
+	setzb	3,4
+	SOUT
+	TIME%
+	sub	1,Initim		; #21 get time used
+	idiv	1,2			; #21 make it seconds
+	movem	1,Initim		; #21 save it
+	movei	1,.FHSLF		; #21 get our runtime
+	RUNTM
+	sub	1,Inirun		; #21 subtract start runtime
+	idiv	1,2			; #21 get seconds
+	movem	1,Inirun		; #21 save it
+	idivi	1,^D3600		; #21 get hours
+	idivi	2,^D60			; #21 get minutes and seconds
+	dmovem	2,1(p)			; #21 save the times
+	move	2,1
+	move	1,Ljfn
+	movx	3,no%lfl!no%zro!fld(2,no%col)!fld(^D10,no%rdx)
+	jumpe	2,Logpl4
+	NOUT
+	 nop
+	movei	2,":"
+	BOUT
+Logpl4:	move	2,1(p)			; #21 get minutes
+	NOUT
+	 nop
+	movei	2,":"
+	BOUT
+	move	2,2(p)			; #21 get hours
+	NOUT
+	 nop
+	movei	2," "
+	BOUT
+	move	2,Inirun		; #21 get runtime used
+	imuli	2,^D100			; #21 make it percentage
+	idiv	2,Initim		; #21 get percentage of time used
+	movx	3,no%lfl!no%zro!fld(2,no%col)!fld(^D10,no%rdx)
+	NOUT
+	 nop
+	move	5,(p)			; #24 get the reason
+	hrro	2,[[asciz /% Quit /]
+		   [asciz /% Saved /]
+		   [asciz /% Died /]
+		   [asciz /% Won/]](5)	; #33 get the string
+	setzb	3,4
+	SOUT
+	move	1,[xwd	.FHSLF,400]	; use RMAP to get a jfn for a
+	RMAP				;   page of the current process
+	 ERJMP	.+1
+	hlrz	2,1			; put jfn returned in ac2
+	move	1,Ljfn
+	movx	3,fld(.JSAOF,js%dir)!js%paf
+	setz	4,			; show dirname,filname,type,punctuate
+	JFNS				; write filename to log file
+	 ERJMP	[move	1,Ljfn		; it failed
+		 hrroi	2,[asciz /No save file/]
+		 setzb	3,4		; make some entry anyway
+		 SOUT
+		 JRST	Logpl5]			; and continue
+	hrroi	1,Atmbfr
+	movx	3,fld(.JSAOF,js%nam)!fld(.JSAOF,js%typ)!js%paf
+	JFNS
+	 nop
+	move	5,2			; save the jfn
+	hrroi	1,Atmbfr
+	hrroi	2,[asciz /ROGUE.EXE/]
+	STCMP
+	jumpe	1,Logpl5
+	move	2,5
+	hrroi	1,Atmbfr
+	movx	3,fld(.JSAOF,js%typ)!js%paf
+	JFNS
+	 nop
+	hrroi	1,Atmbfr
+	hrroi	2,[asciz /.EXE/]
+	STCMP
+	movx	3,fld(.JSAOF,js%nam)!js%paf
+	caie	1,0
+	 iorx	3,fld(.JSAOF,js%typ)
+	move	2,5
+	move	1,Ljfn
+	JFNS
+	 nop
+Logpl5:	move	1,Ljfn
+	hrroi	2,[asciz /
+/]
+	setzb	3,4
+	SOUT				; type <crlf> in log
+	move	1,Ljfn
+	CLOSF				; close log file
+	 trn
+Logpl8:	pop	p,3			; #24 restore arg
+	pop	p,2			; restore argument address
+	RET				; and finished
+
+	subttl	Read init file
+
+; RDINIT - Reads the Rogue.init file (if it exists)
+
+Rdinit:	push	p,2			; save ac's
+	push	p,3
+	push	p,4
+	push	p,5
+	movem	p,Sav.p			; #8 save stack pointer
+	movei	1,Rescan		; #8 get rescan address
+	movem	1,Csblk			; #8 save rescan address
+	movx	1,gj%sht!gj%old		; get jfn for init file
+	hrroi	2,[asciz /PS:ROGUE.INIT/]
+	GTJFN				; did it work?
+	 skipa				; #11 didn't work, try main directory
+	jrst	I.opnf			; #11 it worked, open it
+	setob	1,2			; #11 this job
+	hrri	2,4			; #11 put data in AC4
+	movei	3,.JILNO		; #11 logged in directory
+	GETJI				; #11 get the info
+	 ERJMP	I.def			; #11 failure, assume it doesn't exist
+	move	2,4			; #11 in ac2
+	hrroi	1,Atmbfr		; #11 put string in atmbfr
+	DIRST				; #11 output to buffer
+	 ERJMP	I.def			; #11 oops, forget it
+	hrroi	2,[asciz /ROGUE.INIT/]	; #11 file name, append to directory
+	setzb	3,4
+	SOUT
+	movx	1,gj%sht!gj%old+.GJDEF	; #11 get the JFN
+	hrroi	2,Atmbfr		; #11 string here.
+	GTJFN
+	 ERJMP	I.def			; no init file
+I.opnf:	movx	2,7b5+of%rd		; yes-open init file
+	OPENF
+	 JFATAL	<Can't open INIT file>	; failed-die
+	movem	1,Inijfn		; set up comnd state block to get
+	hrlz	1,1			;  commands from init file
+	hrri	1,.NULIO		;  and to type messages nowhere
+	movem	1,Csblk+.CMIOJ
+I.def:	GJINF				; get his user number
+	move	2,1			; set up to translate to string
+	hrroi	1,Namstr
+	DIRST				; get user name
+	 JFATAL
+	movei	2," "			; deposit a blank at its end
+	idpb	2,1
+	movei	1,.PRIOU		; do MTOPR to get terminal speed
+	movei	2,.MORSP		;   for setting of 'slow' switch
+	setzb	3,4
+	MTOPR
+	 ERCAL	[JWARN
+		 RET]
+	hrrz	3,3			; use receive speed
+	caig	3,^D300			; #26 ignore unknown, is it slow?
+	 jrst	[movei	1,1
+		 movem	1,Sloswi	; yes-make slow switch true
+		 jrst	.+1]
+	skipe	Inijfn			; did we have an ini file?
+	 jrst	I.go			; yes-get commands from it
+
+Inidon:	move	p,Sav.p
+	pop	p,5			; restore ac's
+	pop	p,4
+	pop	p,3
+	pop	p,2
+	hrli	1,Namstr
+	hrr	1,2
+	blt	1,5(2)			; return name string
+	hrli	1,Frustr
+	hrr	1,3
+	blt	1,5(3)			; return fruit string
+	hrli	1,Filstr
+	hrr	1,4
+	blt	1,5(4)			; return name of save file
+	hrli	1,Firswi		; #14 first switch
+	hrr	1,5			; address of switches
+	blt	1,6(5)			; #33 return 7 switches
+	hrrz	1,Inijfn		; no more commands in init file
+	jumpe	1,[RET]
+	CLOSF				; close it
+	 JWARN				; failed
+	RET				; and return
+
+I.go:	movei	1,Csblk			; initialize command line
+	movei	2,[flddb. (.cmini)]
+	COMND
+	 ERJMP	[JWARN
+		 jrst	I.go]
+Repars:	setzm	Noswi			; reparses come here
+Noloc:	movei	1,Csblk			; jump here after getting 'no'
+	movei	2,Swblk
+	COMND				; get a keyword!
+	 ERJMP	Eoftst			; error-maybe end of file
+	txne	1,cm%nop		; did he screw up?
+	 jrst	I.err
+	hrrz	3,3			; no-make sure everything is ok
+	cain	3,Swblk			; #14 parsed Keyword?
+	 jrst	I.key
+	skipe	Noswi			; #14 parsed NO already?
+	 jrst	I.nono			; #14 yes, bad boy.
+	cain	3,Opblk			; #14 parsed option?
+	 jrst	I.opt
+	jrst	I.go			; #14 nope, confirmed, do again
+
+I.err:	JWARN				; #14 yes-tell him so
+	TMSG	<Error in keyword - >
+	hrroi	1,Atmbfr
+	PSOUT				; tell him the bad keyword
+	TMSG	<
+>
+	movei 1,^D1000			; give him 1 second (?) to read it
+	DISMS
+	jrst	I.go
+
+I.nono:	caie	3,Opblk			; #14 can't no these functions
+	 jrst	I.go
+	TMSG	<%ROGUE: Can't negate option ">
+	hrroi	1,atmbfr
+	PSOUT
+	TMSG	<"
+>
+	movei	1,^D1000		; give him 1 second (?) to read it
+	DISMS
+	jrst	I.go			; #14 begin new line
+
+I.key:	hrrz	2,(2)			; #14 get index of appropriate switch
+	move	1,Noswi
+	xori	1,1			; #14 get correct setting
+	movem	1,Firswi(2)		; #14 set it
+	jrst	Noloc
+
+I.opt:	hrrz	2,(2)
+	jrst	(2)
+
+I.frui:	movei	1,Csblk			; get name of fruit
+	movei	2,[flddb. (.cmtxt)]
+	COMND
+	 JFATAL
+	call	Confrm			; and a confirmation
+	 jrst	I.go
+	setz	1,			; we need to see if he really typed
+	move	2,[point 7,Atmbfr]	;   anything important
+	ildb	1,2			; get the first byte in atmbfr
+	jumpe	1,I.go			; if zero, ignore this command
+	move	1,[Blanks,,Frustr]	; wipe out the default name
+	blt	1,Frustr+5
+	hrroi	1,Frustr		; set up pointers to sout
+	hrroi	2,atmbfr
+	setzb	3,4
+	SOUT				; copy what he typed to frustr:
+	 JFATAL
+	movei	2," "			; end with a blank
+	idpb	2,1
+	jrst	I.go			; return
+
+I.name:	movei	1,Csblk			; get the guy's new name string
+	movei	2,[flddb. (.cmtxt)]
+	COMND
+	 JFATAL
+	call	Confrm			; and confirmation
+	 jrst	I.go
+	setz	1,			; we need to see if he really typed
+	move	2,[point 7,Atmbfr]	;   anything important
+	ildb	1,2			; get the first byte in atmbfr
+	jumpe	1,I.go			; if zero, ignore this command
+	move	1,[Blanks,,Namstr]	; wipe out the default name
+	blt	1,Namstr+5
+	hrroi	1,Namstr		; set up pointers to sout
+	hrroi	2,Atmbfr
+	setzb	3,4
+	SOUT				; copy what he typed to namstr
+	 JFATAL
+	movei	2," "			; end it with a blank
+	idpb	2,1
+	jrst	I.go			; return
+
+I.save:	movei	1,Csblk			; set the name of the save file
+; #7	movei	2,[flddb. (.cmtxt)]
+	movei	2,C.rfil		; #7 get file name
+	COMND
+	 JFATAL
+	txnn	1,cm%nop		; #7 did it parse?
+	 jrst	I.sav1
+	hrroi	1,Filstr		; #7 set default string
+	hrroi	2,[asciz /Ps:Rogue.Save/]
+	setzb	3,4
+	SOUT				; #7 set it
+	 JFATAL
+	jrst	I.go
+I.sav1:	call	Confrm			; and confirmation
+	 jrst	I.go
+	setz	1,			; we need to see if he really typed
+	move	2,[point 7,Atmbfr]	;   anything important
+	ildb	1,2			; get the first byte in atmbfr
+	jumpe	1,I.go			; if zero, ignore this command
+	move	1,[Blanks,,Filstr]	; wipe out the default name
+	blt	1,Filstr+5
+	hrroi	1,Filstr		; set up pointers to sout
+	hrroi	2,Atmbfr
+	setzb	3,4
+	SOUT				; copy what he typed to filstr
+	 JFATAL
+	movei	2," "			; end it with a blank
+	idpb	2,1
+	jrst	I.go			; and return
+
+	page
+
+	subttl	Name validation
+
+; VALID - Checks to see if a player is trying to use a valid username other
+;         than his own (which is illegal for fairness)
+
+Valid:	dmovem	2,12			; save args
+	setzm	1(p)			; return false so far
+	setzm	(13)			; no usernumber returned yet
+;	GJINF				; find the user's user number
+;	move	2,1
+;	hrroi	1,Hisnam
+;	DIRST				; and make it a string
+;	 JFATAL
+;	setzm	Hisnam+6		; these two words are zeroed because
+;	setzm	Hisnam+7		;   user names can be this long but
+;					;   player names cannot be
+;	hrroi	1,Hisnam		; set up pointers to do stcmp to see
+;	hrro	2,12			;   if he is just using his own name
+;	STCMP				; is he?
+;	 JFATAL
+;	jumpe	1,[RET]			; if he is, then ac1 is zero
+	hrro	2,12            	; now, we have to see if this is
+	setzb	1,3			;   a valid username
+	RCUSR				; look and see if it is
+	 ERJMP	[movx	1,rc%nom	; error,
+		 jrst	.+1]		; make artificial nomatch
+	txne	1,rc%nom		; a valid username?
+	 RET				; nope, far out
+	movei	1,1			; return true, is a valid username
+	movem	1,1(p)
+	movem	3,(13)			; and return the usernumber
+	RET
+
+	subttl	Scoring routine
+
+; ISDDT - Sees if the guy is debugging
+Isddt:	hrrz	1,.JBDDT
+	jumpn	1,[movei 1,1
+		   movem 1,1(p)
+		   RET]
+	setzm	1(p)
+	RET
+
+; SNOACC - called when we can't give access to score file
+
+Snoacc:	move	1,Sjfn			; couldn't open file
+	RLJFN				; release jfn
+	 JFATAL
+	TMSG	<
+%ROGUE - Score file is busy. Shall I wait? [Y or N]>
+	PBIN                            ; see if he want's to wait
+	andi	1,177                   ; lop off parity
+	caie	1,"N"                   ; 'N' means no, other mean yes
+	 cain	1,"n"
+	  jrst	S.punt
+	movei	1,^D5000		; wait 5 seconds
+	DISMS
+	jrst	Sgjfn			; go try again
+S.punt:	pop	p,5                     ; restore ac's
+	pop	p,4
+	pop	p,3
+	pop	p,2
+	setzm	1(p)                    ; return false success value
+	RET                             ; and go home
+
+; SCORES - updates the score file and returns the top 10
+
+Scores:	push	p,2			; save parameters
+	push	p,3
+	push	p,4
+	push	p,5
+Sgjfn:	movx	1,gj%sht!gj%old!gj%acc	; get jfn for score file
+	hrro	2,5			; make byte pointer for score file
+	GTJFN
+	 JFATAL	<Score file missing>
+	movem	1,Sjfn			; save the returned jfn
+	move	2,[1,,.FBREF]		; get access word (really a date)
+	movei	3,Scoacc
+	GTFDB
+	 JFATAL
+	skipn	Scoacc			; is it non-zero?
+	 jrst	Snoacc			; no-file busy
+	hrli	1,.FBREF        	; yes-prepare to change access word to
+	seto	2,			;   lock file access
+	setz	3,
+	CHFDB				; do it
+	 JFATAL	<Can't lock score file>
+	move	1,Sjfn			; set up for openf
+	movx	2,of%rd!of%wr!of%rtd
+	OPENF				; open file, read and write, restrict
+	 jrst	Snoacc
+	hrl	1,1			; set up ac's for pmap
+	hrri	1,1
+	hrli	2,.FHSLF
+	hrri	2,Spage/1000
+	movx	3,pm%rd!pm%wr		; read and write
+	PMAP				; do it
+	 JFATAL				; failed
+	pop	p,5
+	pop	p,this			; restore arguments (to different ac's)
+	pop	p,weekly
+	pop	p,alltim		; #32
+	move	1,Sjfn			; set up for rftad
+	move	2,[1,,.FBCNT]		; get number of writes,,number of refs
+	movei	3,Fdbblk		; address
+	GTFDB
+	 JFATAL
+	move	1,Fdbblk		; get value returned
+	hlrz	1,1			; get # of writes
+	skipn	Spage			; don't check if none stored in file
+	 jrst	S.flus+1
+	subi	1,1
+	camn	1,Spage			; is it the same as what is stored?
+	 jrst	S.flus
+	call	S.done
+	call	Restty
+S.tamp:	TMSG <
+?ROGUE: The score file has been tampered with> ; no-score file is bad
+	HALTF
+	jrst	S.tamp			; bummer
+S.flus:	addi	1,1
+	movem	1,Spage			; store new value
+	GTAD                            ; see what today is
+	andx	1,.LHALF		; #33 fix.
+	subi	1,525254		; #32 magic constant (timezone)
+	camge	1,Spage+1               ; do we need to flush 'weekly'?
+	 jrst	S.flu1			; #32 nope
+	setzm	Spage+BSIZ		; yes
+	move	2,[Spage+BSIZ,,Spage+BSIZ+1]
+	blt	2,Spage-1+BSIZ*^D11	; wipe out old data
+	move	2,Spage+1		; #32 get old date
+S.flu2:	add	2,[7,,0]		; figure new date to flush
+	camg	2,1			; #32 is it after today yet?
+	 jrst	S.flu2			; #32 nope
+	movem	2,Spage+1		; #32 and store it
+
+S.flu1:	setzm	Fndwkl			; #32 not found in weeklies
+	setzm	Fndall			; #32 not found in all_times
+	movei	index,1
+	movei	blttop,Spage-1+BSIZ*^D11
+S.cons:	call	Consis			; check consistency of this entry
+	 jrst	[addi	index,1		; consistency o.k.
+		 cain	index,^D11	; end of weekly?
+		  jrst	[movei	blttop,Spage-1+BSIZ*^D22 ; yes do all-time
+			 jrst	S.cons]
+		 cain	index,^D22	; no-end of all-time?
+		  jrst	S.ins		;   yes-done with consistency check
+		 jrst	S.cons]		;   no-continue
+	move	1,Index			; consistency error-blt this one out
+	imuli	1,BSIZ			; figure where to start and end
+	addi	1,Spage
+	hrl	1,1
+	add	1,[BSIZ,,0]
+	blt	1,(Blttop)		; erase bad entry
+	soja	index,S.cons+1		; #32 try the new entry in its place
+
+S.ins:	move	1,1(this)		; #32 get this guy's score
+	movem	1,Savsco		; and save it
+	skipe	Fndwkl			; #32 found already in weeklies?
+	 jrst	S.all			; #32 yes, try alltimes
+	movei	index,1
+	move	savblt,[Spage+BSIZ*^D9,,Spage+BSIZ*^D10] ; first one to erase
+S.ilup:	move	2,Index			; get addres of current score on list
+	imuli	2,BSIZ
+	addi	2,Spage
+	move	1,Savsco		; get this guy's score
+	camg	1,2(2)			; does he beat listed score?
+	 jrst	[addi	index,1		; no-check next one
+		 cain	index,^D11	; if at end of weekly, we are through
+		  jrst	S.ret
+		 cain	index,^D22	; if at end of yearly, we are through
+		  jrst	S.ret
+		 jrst	S.ilup]		; otherwise continue
+Bltlup:	move	1,Savblt		; he goes on list-make some room
+	move	3,Index
+	imuli	3,BSIZ			; 3 has his place on list
+	addi	3,Spage
+	hlrz	4,1			; 4 has the place we're at now
+	camle	3,4			; are we at his place in list?
+	 jrst	Bltdon			; yes-copy in his data
+	hrrz	2,1			; no-shift another block down
+	addi	2,BSIZ-1		; figure last address for blt
+	blt	1,(2)			; and shift another block
+	move	1,[BSIZ,,BSIZ]
+	sub	savblt,1		; new blt addresses now in a.c. savblt
+	jrst	Bltlup
+Bltdon: movei	1,1(3)			; get where to store new data
+	hrl	1,This			; get addr of where new data is
+	blt	1,5(3)			; #32 copy data
+	push	p,3			; save ac3 for later
+Datloc:	hrroi	1,[exp	0,0,0]		; pseudo-pointer to date word
+	seto	2,			; today's date
+	movx	3,ot%nmn!ot%dam!ot%sla!ot%ntm
+	ODTIM				; put date in bogus block
+	 JFATAL
+	move	1,@Datloc		; get first 5 chars of date
+	pop	p,3			; restore ac3
+	movem	1,3(3)			; #32 and store them
+	setz	chksum,
+	hrli	1,-<BSIZ-1>		; #32 get aobjn pointer
+	hrri	1,1(3)			; get address of current word
+	xor	chksum,(1)		; checksum it
+	aobjn	1,.-1			; #32 jump back if there are any left
+	movem	chksum,(3)		; if done, save checksum
+	caile	index,^D10		; was this the weekly chart?
+	 jrst	S.ret			; no-go return data to caller
+S.all:	skipe	Fndall			; #32 already in all-times?
+	 jrst	S.ret			; #32 yes.
+	movei	index,^D12		; yes-do all-time
+	move	savblt,[Spage+BSIZ*^D20,,Spage+BSIZ*^D21]
+	jrst	S.ilup
+
+S.ret:	movei	4,^D20
+	movei	index,Spage+BSIZ+1
+	move	savblt,Weekly
+	movei	blttop,4(Weekly)
+S.loop:	hrl	1,Index
+	hrr	1,Savblt
+	blt	1,(Blttop)
+	addi	index,BSIZ
+	addi	savblt,5		; #32 5 words in Score_rec
+	addi	blttop,5		; #32 ditto
+	subi	4,1
+	cain	4,^D10
+	 jrst	[addi	index,BSIZ
+		 move	savblt,Alltim
+		 movei	blttop,4(Alltim)
+		 jrst	S.loop]
+	jumpn	4,S.loop
+
+S.done:	seto	1,			; set up ac's to unmap from process
+	hrli	2,.FHSLF
+	hrri	2,Spage/1000
+	setz	3,
+	PMAP				; do it
+	 JFATAL				; failed
+	move	1,Sjfn			; set up to close score file, keep jfn
+	txo	1,co%nrj
+	CLOSF				; do it
+	 JFATAL				; failed
+	move	1,Sjfn			; reset access word
+	hrli	1,.FBREF		; prepare to change access word to
+	setob	2,3			;   unlock file access
+	CHFDB				; do it
+	 JFATAL	<Can't unlock score file>
+	move	1,Sjfn			; release jfn
+	RLJFN
+	 JFATAL
+	movei	1,1
+	movem	1,1(p)                  ; return true success value
+	RET
+
+; Routine to check consistency of a score data block
+; #32 also deletes entry if new score for user is greater than old.
+; Returns: +1 o.k.
+;	   +2 bad
+
+Consis:	move	4,Index			; #32 get index
+	imuli	4,BSIZ			; #32 get index into block
+	add	4,[xwd	-<BSIZ-1>,Spage+1] ; #32 make aobjn pointer to block
+	movei	1,.NULIO		; #32 output to nil space
+	skipn	2,(4)			; #32 get user number
+	 jrst	Consi2			; #32 if zero, ignore it
+	DIRST				; #32 check validity
+	 ERJMP	Consi1			; #32 invalid, lose it
+	came	2,0(this)		; #32 compare it to ours
+	 jrst	Consi2			; #32 not the same, chksum it
+	move	2,1(4)			; #32 same, get the scores
+	camg	2,1(this)		; #32 old score higher than new?
+	 jrst	Consi1			; #32 yes, so lose it
+	cail	index,^D11		; #32 weeklies?
+	 sosa	Fndall			; #32 no
+	sos	Fndwkl			; #32 yes
+Consi2:	setz	chksum,			; clear cumulative checksum
+	xor	chksum,(4)		; xor it with checksum so far
+	aobjn	4,.-1			; #32 jump back if we are not done
+	camn	chksum,-BSIZ(4)		; #32 does it check out?
+	 RET				; yes---o.k., give +1 return
+Consi1:	aos	(p)			; no---skip return
+	RET
+	page
+
+	subttl	Code to return fdb info for saving of games
+
+Getfdb:	move	12,2			; save addresses
+	move	13,3
+	hrro	2,2			; look up save file
+	movx	1,gj%sht
+	GTJFN
+	 JFATAL	<GETFDB>
+	movem	1,Svjfn			; save this jfn
+	move	2,[1,,.FBADR]		; get disk address
+	movei	3,Fdbblk
+	GTFDB
+	 JFATAL
+	hrrz	2,Fdbblk		; get value returned
+	movem	2,(13)			; and return it to caller
+;#12	move	1,Svjfn
+;	movei	2,Fdbblk
+;	movei	3,.RSTDT
+;	RFTAD				; get system write time and date
+;	 JFATAL
+;	move	4,Fdbblk+.RSCRE		; and get it into ac's
+;	movem	4,(14)			; to return it to caller
+	move	1,Svjfn
+	RLJFN				; release jfn
+	 JFATAL
+	move	2,12			; restore argument addresses
+	move	3,13
+;#12	move	4,14
+	RET				; and done!
+
+Fiddle:	hrro	2,2
+	movx	1,gj%sht
+	GTJFN
+	 JFATAL	<FIDDLE>
+	movem	1,Svjfn			; save this jfn
+	move	2,[1,,.FBBYV]		; get byte size
+	movei	3,Fdbblk
+	GTFDB
+	 JFATAL
+	move	3,Fdbblk		; get i/o info word into ac's
+	setz	2,			; clear this to receive byte size
+	load	2,fb%bsz,c
+	movx	1,fld(.FBBYV,cf%dsp)
+	hrr	1,Svjfn
+	caie	2,^D8			; was it 8 bits?
+	 jrst	[movei	2,^D8		; yes-make it 7
+		 jrst	F.set]
+	movei	2,^D7			; no-make it 8
+F.set:	stor	2,fb%bsz,c		; save the size
+	movx	2,fb%bsz
+	CHFDB				; set size to whatever we decided
+	 ERCAL	[JWARN	<Can't set Save file status>
+		 RET]
+	move	1,Svjfn			; release jfn
+	RLJFN
+	 JFATAL
+	RET				; and return
+	page
+
+	Subttl	Routine to delete and expunge a file
+
+Edelet:	hrro	2,2
+	movx	1,gj%sht!gj%old
+	GTJFN				; try to get a jfn on file
+	 JFATAL	<EDELETE>		; couldn't do it-die
+	andx	1,.RHALF		; #31 only jfn
+	hrli	1,.FBPRT		; #31 change protection word
+	movei	2,770000		; #31 only self access
+	movei	3,770000		; #31 allow all access
+	CHFDB
+	 JFATAL
+	move	4,1			; #31 save the JFN
+	txo	1,df%exp
+	DELF				; delete and expunge it
+	 ERJMP	[move	1,4		; #31 get the JFN
+		 DELF			; #31 delete it
+		  ERJMP	[RET]
+		 RET]
+	RET				; return
+
+	page
+
+; RESCAN -- routine to parse RSCAN buffer
+Rescan:	push	p,2			; save address of string
+	movem	p,Sav.p			; #8 save stack pointer
+	movei	1,Rscan2		; #8 get rescan address
+	movem	1,Csblk			; #8 set it.
+	move	1,[xwd .PRIIN,.NULIO]
+	movem	1,Csblk+.CMIOJ
+	movei	1,Csblk
+	movei	2,[flddb.(.CMINI)]
+	COMND
+	 nop
+	movei	1,.RSINI
+	RSCAN
+	 ERJMP	R.none			; no rescan
+	movei	1,.RSCNT
+	RSCAN
+	 ERJMP	R.none			; again
+	jumpe	1,R.none
+
+	move	4,1			; save length of buffer
+	move	3,[point 7,Rsbuf]	; get pointer to rescan string
+Rscin:	movei	1,.PRIIN		; input from terminal
+	BIN				; dump call to program
+	cain	2," "			; parse the space?
+	 jrst	Rscin1			; start getting options
+	cain	2,12			; EOLN?
+	 jrst	R.none			; yeppo, use defaults
+	idpb	2,3			; save char
+	sojge	4,Rscin			; dump rest of program call
+	jrst	R.none			; EOLN so use defaults
+
+Rscin1:	hrroi	1,Rsbuf			; rescan buffer
+	hrroi	2,[asciz /ROGUE/]	; program name!
+	STCMP				; are they the same?
+	jumpe	1,Rscan2		; yow! they are.
+	movei	1,.PRIIN		; nope, clear input buffer
+	CFIBF
+	jrst	R.none			; and do nothing about it.
+
+Rscan2:	movei	1,Csblk
+	movei	2,C.tfil		; is there a file?
+	COMND
+	 ERJMP	R.none			; failure
+	txne	1,cm%nop		; parsed?
+	 jrst	R.none			; nope
+	hrrzs	3
+	caie	3,C.tfil		; parsed <CR>?
+	 jrst	R.none			; yes
+	movem	2,Terjfn
+	call	Confrm			; get <CR>
+	 jrst	[move	1,Terjfn
+		 RLJFN
+		  nop
+		 jrst	R.none]
+	move	p,Sav.p			; #10 forgot this one
+	hrro	1,(p)			; get address of destination
+	move	2,Terjfn
+	movx	3,fld(1,js%dev)!fld(1,js%dir)!fld(1,js%nam)!fld(1,js%typ)!fld(1,js%gen)!js%paf ; #32
+	JFNS
+	setz	2,
+	idpb	2,1
+	move	1,Terjfn
+	RLJFN
+	 nop
+	move	p,Sav.p			; #8 restore stack pointer
+	movei	1,1
+	movem	1,(p)			; #7 (p) because we'll pop soon
+R.done:	movei	1,.PRIIN		; clear out leftover junk
+	CFIBF
+	pop	p,2			; oh well
+	RET				; and return
+R.none:	move	p,Sav.p			; #8 restore stack pointer
+	setzm	(p)			; #7 false if no good rscan stuff
+	jrst	R.done
+
+	page
+
+	Subttl	Other routines
+;error handling routines
+
+Fatal:	TMSG	<?ROGUE: Jsys error: >
+Fatal3:	call	Restty			; put terminal in normal mode
+Fatal2:	call	Warn1
+Fatal1:	HALTF
+	TMSG	<Sorry baby, no dice
+>
+	jrst	Fatal1
+
+;non-fatal jsys errors come here
+;returns: +1 always
+
+Warn:	TMSG	<%ROGUE: Jsys error: >
+Warn1:	movei	1,.PRIIN
+	CFIBF				; clear typeahead
+	movei	1,.PRIOU
+	DOBE				; wait for other output
+Warn2:	movei	1,.PRIOU		; type out standard error message
+	hrloi	2,.FHSLF
+	setzb	3,4
+	ERSTR
+	 trn				; ignore these silly errors
+	 trn
+	TMSG	<
+>
+	RET
+
+Eoftst:	movei	1,.FHSLF		; see if error was end of file
+	GETER
+	 JFATAL
+	hrrz	2,2
+	caie	2,IOX4			; was it?
+	 jrst	Fatal			; no-really a bad error
+	jrst	Inidon			; yes-done with initialization
+
+Confrm:	movei	1,Csblk			; routine to get comnd confirmation
+	movei	2,[flddb. (.cmcfm)]
+	COMND				; get <crlf>
+	 ERJMP	[JWARN
+		 RET]
+	txne	1,cm%nop		; did he type the right thing?
+	 jrst	[call	Warn		; no- +1 return
+		 RET]
+	aos	(p)			; yes-skip return
+	RET
+
+; #1 Change this routine to read in file for Terminal type definitions
+; #1 and staff accounts.
+; #4 accepts len,string in 2,3; address in 4, expects same + len in 5
+; #30 parameters:
+;	ac2:	string address
+;	ac3: 	length of string
+;	ac4:	address of bug-address string
+;	ac5:	address of funny file name record
+Init.s:	movem	p,Sav.p			; #8 save stack
+	move	1,5
+	hrli	1,Files
+	blt	1,3(5)			; #30 move them all
+	dmovem	2,6
+	move	10,4			; #30 save second string in ac10
+	setzm	(10)			; #30 clear the first word
+	move	1,[xwd	-4,Files]
+Init.1:	move	2,(1)
+	setzm	(2)
+	aobjn	1,Init.1
+
+	TMSG	<
+--- >
+	movei	1,.PRIOU
+	hrro	2,6
+	move	3,7
+	setz	4,
+	SOUT
+	TMSG	< Setup Mode ---
+Enter null line to exit...
+
+>
+Staff4:	movei	1,Staff1		; #1 get reparse address
+	movem	1,Csblk			; #1 save it
+	hrroi	1,[asciz /Enter the Configuration file name: /] ; #30
+	movem	1,Csblk+.CMRTY		; #1 prompt
+	move	1,[xwd	.PRIIN,.PRIOU]
+	movem	1,Csblk+.CMIOJ
+	movei	1,Csblk
+	movei	2,[flddb.(.cmini)]	; #1 init comnd
+	COMND
+	 nop
+Staff1:	move	p,Sav.p			; #8 restore stack
+	move	1,Terjfn		; #30 release the jfn if we have one
+	RLJFN
+	 nop
+	movei	1,Csblk			; #1 parse terminal file name
+	movei	2,C.tfil		; #3 parse <CR> to quit, file for term
+	COMND
+	 JFATAL				; #1 oops
+	txne	1,cm%nop		; #1 parsed?
+	 jrst	[call	Warn
+		 jrst	Staff4]		; #3 error, not parsed
+	hrrzs	3
+	caie	3,C.tfil		; #3 parsed <CR>?
+	 jrst	Fatal1			; #3 yep, die.
+	movem	2,Terjfn		; #1 save the jfn
+	call	Confrm			; #1 get <CR>
+	 jrst	Staff4			; #1 didn't get it, try again
+	move	1,Terjfn		; #1 open this file
+	movx	2,fld(7,of%bsz)!fld(.gsnrm,of%mod)!of%rd
+	OPENF
+	 ERJMP	[call	Warn		; #1 oops, didn't open
+		 move	1,Terjfn	; #1 release jfn
+		 RLJFN
+		  nop
+		 jrst	Staff4]		; #1 and try again
+	movei	1,Staff3		; #1 set reparse addess
+	movem	1,Csblk+.CMFLG
+	movei	1,.NULIO		; #1 output to hell
+	hrl	1,Terjfn		; #1 input file
+	movem	1,Csblk+.CMIOJ		; #1 save 'em
+	setzm	Lstter			; #19 zero the table
+	move	1,[Lstter,,Lstter+1]
+	blt	1,Lstter+ter.t%*ter.m%-ter.m% ; #19 zero the table
+	move	1,[point 7,Staf.a]	; #19 set up tables
+	movem	1,Staf.p
+	setzm	Staf.s			; #30 ...
+	move	1,[xwd	Staf.s,Staf.s+1]
+	blt	1,Staf.s+7
+	move	1,[point 7,Deny.a]
+	movem	1,Deny.p
+	move	1,[xwd	Staf.s,Deny.s]
+	blt	1,Deny.s+7
+
+Staff2:	movei	1,Csblk
+	movei	2,[flddb.(.cmini)]
+	COMND
+	 ERJMP	Tsteof			; #1 EOF?
+Staff3:	movei	1,Csblk
+	movei	2,C.staf
+	COMND
+	 ERJMP	Tsteof			; #1 EOF?
+	txne	1,cm%nop
+	 jrst	[JWARN	<bad keyword in configuration file>
+		 jrst	staff2]
+	hrrzs	3			; #19 get flddb. used
+	cain	3,C.term		; #30 did we parse term type?
+	 jrst	Teradd			; #19 yes, add the type
+	cain	3,C.file		; #30 parse file keyword?
+	 jrst	Filadd			; #30 yes, do the right thing
+	hrrz	2,(2)			; #1 get address of routine
+	jrst	(2)			; #1 do the function
+
+; #30 parse file type
+Filadd:	hrrz	5,(2)			; get index of file
+	move	1,Files(5)
+	skipe	(1)
+	 call	[TMSG	<%ROGUE: >
+		 hrroi	1,Atmbfr
+		 PSOUT
+		 TMSG	< already defined - superseding
+>
+		 RET]
+	move	1,Filjfn
+	RLJFN
+	 nop
+	movei	1,Csblk
+	movei	2,C.rfil
+	COMND
+	 ERJMP	[TMSG	<%ROGUE: incomplete file specs - >
+		 hrroi	1,Atmbfr
+		 PSOUT
+		 jrst	Tsteof]
+	txne	1,cm%nop		; parsed?
+	 jrst	[JWARN	<bad file spec>
+		 jrst	Staff2]		; error, not parsed
+	hrrzs	3
+	movem	2,Filjfn		; save the jfn
+	jsr	Fconfm			; get <CR>
+	hrro	1,Files(5)		; put to right place.
+	move	2,Filjfn
+	movx	3,fld(1,js%dev)!fld(1,js%dir)!fld(1,js%nam)!fld(1,js%typ)!fld(1,js%gen)!js%paf
+	JFNS
+	setz	2,
+	idpb	2,1			; asciz
+	move	1,Filjfn
+	RLJFN
+	 nop
+	jrst	Staff2
+
+Teradd:	hrrz	5,(2)			; #19 get type of terminal
+	movei	2,[flddb.(.cmnum,,10)]
+	COMND
+	 ERJMP	[TMSG	<%ROGUE: incomplete terminal spec in configuration file
+>
+		 jrst	Tsteof]
+	txne	1,cm%nop
+	 jrst	[JWARN	<bad terminal spec>
+		 jrst	Staff2]
+	move	6,2			; #19 save number
+	jsr	Fconfm
+	cain	5,-1			; #34 ignore Any "other" entries
+	 jrst	Staff2			; #34
+	subi	5,1			; #34 change offset
+	movei	1,ter.m%-1		; #19 how many per type
+	imuli	5,ter.m%		; #19 get offset
+Terad1:	move	3,5
+	add	3,1			; #19 get final offset
+	skipn	Lstter(3)		; #19 
+	 jrst	[movem	6,Lstter(3)	; #1 save it
+		 jrst	Staff2]
+	sojge	1,Terad1
+	TMSG	<%ROGUE: termtab space exhausted
+>
+	jrst	Staff2
+
+; #4 reads MAIL Address....must have no spaces in it.  Delimited by
+; #4 either space, tab, <cr> or ";"
+Stafbg:	movei	1,Csblk
+	movei	2,[fldbk.(.cmfld,,,,,Stafbb)]
+	COMND
+	 ERJMP	Tsteof			; #4 hmmm...error
+	txne	1,cm%nop		; #4 parse?
+	 jrst	[JWARN	<bad mailing address>
+		 jrst	Staff2]
+	jsr	Fconfm			; #30 and confirm
+	hrro	1,10			; #9 save in correct place
+	hrroi	2,Atmbfr
+	setzb	3,4
+	SOUT
+	setz	2,
+	idpb	2,1			; #10
+	jrst	Staff2
+	
+Stafbb:	brini.	(fldb0.,fldb1.,fldb2.,fldb3.)
+	unbrk.	"@"
+	unbrk.	"%"
+	unbrk.	"<"
+	unbrk.	">"
+	unbrk.	":"
+	unbrk.	"."
+	exp	w0.,w1.,w2.,w3.
+
+Stafac:	movei	2,[flddb.(.cmact)]	; #1 parse account string
+	COMND
+	 ERJMP	Tsteof
+	txne	1,cm%nop
+	 jrst	[JWARN	<bad account string> ; #1 oops
+		 jrst	Staff2]
+	jsr	Fconfm
+	movei	2,7
+Stafa1:	jumpl	2,[TMSG	<%ROGUE: accounts string space exhausted
+>
+		 jrst	Staff2]		; #1 oops again
+	skipe	Staf.s(2)		; #1 see if any room
+	 soja	2,Stafa1		; #1 not here
+	move	1,Staf.p		; #1 get current pointer
+	movem	1,Staf.s(2)		; #1 save as start of string
+	hrroi	2,Atmbfr		; #1 now get new string
+	setzb	3,4
+	SOUT				; #1 output to account space
+	setz	2,			; #1 put in zero
+	idpb	2,1
+	movem	1,Staf.p		; #1 save new pointer
+	jrst	Staff2
+
+Denyac:	movei	2,[flddb.(.cmact)]	; #17 parse account string
+	COMND
+	 ERJMP	Tsteof
+	txne	1,cm%nop
+	 jrst	[JWARN	<bad account string> ; #1 oops
+		 jrst	Staff2]
+	jsr	Fconfm			; #19 confirm
+	movei	2,7
+Denya1:	jumpl	2,[TMSG	<%ROGUE: accounts string space exhausted
+>
+		 jrst	Staff2]		; #1 oops again
+	skipe	Deny.s(2)		; #1 see if any room
+	 soja	2,Denya1		; #1 not here
+	move	1,Deny.p		; #1 get current pointer
+	movem	1,Deny.s(2)		; #1 save as start of string
+	hrroi	2,Atmbfr		; #1 now get new string
+	setzb	3,4
+	SOUT				; #1 output to account space
+	setz	2,			; #1 put in zero
+	idpb	2,1
+	movem	1,Deny.p		; #1 save new pointer
+	jrst	Staff2
+
+Fconfm:	z
+	Movei	1,csblk
+	movei	2,[flddb.(.cmcfm)]
+	COMND
+	 ERJMP	Tsteof
+	txne	1,cm%nop		; #1 EOLN?
+	 jrst	[JWARN	<funny Termtab entry>
+		 jrst	Staff2]
+	jrst	@fconfm
+
+Tsteof:	movei	1,.FHSLF
+	GETER
+	hrrzs	2			; #1 get error
+	cain	2,IOX4			; eof?
+	 jrst	Tsteo1
+	cain	2,COMNX9
+	 jrst	Tsteo1
+	jrst	Fatal
+Tsteo1:	movei	1,Repars		; #1 reset reparse address
+	movem	1,Csblk+.CMFLG
+	hrroi	1,[asciz /ROGUE>/]
+	movem	1,Csblk+.CMRTY
+	move	1,[xwd	.PRIIN,.PRIOU]
+	movem	1,Csblk+.CMIOJ
+	move	1,Filjfn		; #30 do some cleanup
+	RLJFN
+	 nop
+	move	1,Staf.p		; #4 get the account pointer
+	came	1,[point 7,Staf.a]	; #4 get a pointer to account space
+	 jrst	Staff6
+	hrroi	2,[asciz /*/]		; #4 set default account to "*"
+	setzb	3,4			; #4 so nobody gets WARNING message
+	SOUT
+	movem	1,Staf.p
+	TMSG	(<No staff accounts specified - defaulting to "*" >)
+Staff6:	movei	1,ter.t%*ter.m%-1
+	skipe	Lstter(1)		; #19 any terminals defined
+	 jrst	Staff7			; #19 yep, good.
+	sojge	1,Staff6+1		; #19 maybe not
+Staff8:	TMSG	<?ROGUE: No legal terminal types defined!
+>
+Staff5:	TMSG	<?ROGUE: Please correct errors in >
+	movei	1,.PRIOU
+	move	2,Terjfn
+	setz	3,
+	JFNS
+	TMSG	<, and try again.
+>
+	HALTF
+	jrst	Staff6
+Staff7:	move	5,[xwd	-4,Files]	; #30 see if all the files are defined
+Staff9:	move	2,(5)			; get the address
+	skipe	(2)			; anything there?
+	 jrst	[aobjn	5,Staff9	; try next file spec
+		 jrst	Staff0]
+Staf00:	TMSG	<?ROGUE: >
+	hlro	1,C.Filt-Files+1(5)	; get the address
+	PSOUT
+	TMSG	< must be defined!
+>
+	jrst	Staff5
+	
+Staff0:	setom	Is.set			; #1 mark as set up
+	move	1,Terjfn		; #1 close the file
+	CLOSF
+	 nop
+	skipe	(10)			; #30 anything in bug-address?
+	 jrst	Stf.ys
+	hrro	1,10			; #9 address of string
+	hrroi	2,[asciz /BUG-ROGUE@ECLC.USC.EDU/] ; #34 default
+	setzb	3,4
+	SOUT
+
+Stf.ys:	move	p,Sav.p
+	movei	1,1
+	movem	1,1(p)
+	RET
+
+; #27 get the account string.
+G.Acct:	seto	1,			; get the account designator for this
+	hrroi	2,Atmbfr		;   job too see if this guy is a
+	GACCT				;   staff person.
+	 ERJMP	G.acc1
+	move	1,[point 7,Atmbfr]	; get a pointer to the string
+	ildb	2,1			; get that first byte
+	jumpn	2,[RET]			; non-zero?  fine
+G.acc1:	GJINF				; zero.  get the usernumber
+	move	2,1
+	hrroi	1,Atmbfr
+	DIRST				; get the username
+	 JFATAL				; bummersville
+	RET
+
+; #1 ok, it's not setup mode, see if he's a staff person
+Staffy:	movem	p,Sav.p			; #8 save stack pointer
+	call	G.Acct			; #27 get the account string to Atmbfr
+	movei	4,7
+Stf1:	jumpl	4,Stf.no
+	skipn	2,Staf.s(4)		; #1 is there another string to check
+	 jrst	Stf.no			; #1 nope
+	hrroi	3,Atmbfr
+	movx	1,.WLSTR		; #4 compare wild strings
+	WILD%				; #4 check for wildness
+	 JFATAL				; #1 foo.
+	jumpe	1,Stf.ys		; #1 yep!  he's staff
+	soja	4,Stf1			; #1 no, try next
+
+Stf.no:	move	p,Sav.p
+	setzm	1(p)
+	RET
+
+; #17 See if this person has been denied access...
+Noplay:	movem	p,Sav.p			; #8 save stack pointer
+	call	G.acct			; #27 get the account string to Atmbfr
+	movei	4,7
+Nopla1:	jumpl	4,Stf.no		; #17 hey, can play
+	skipn	2,Deny.s(4)		; #17 is there another string to check
+	 jrst	Stf.no			; #17 nope, so he can play
+	hrroi	3,Atmbfr
+	movx	1,.WLSTR		; #4 compare wild strings
+	WILD%				; #4 check for wildness
+	 JFATAL				; #1 foo.
+	jumpe	1,Stf.ys		; #17 hmm, he fits, so can't play...
+	soja	4,Nopla1		; #17 no, try next
+
+; #34 call with TRMCHK(0) if rogue, TRMCHK(1) if R-STAT  (hacked, I know).
+Trmchk:	move	6,2			; #34 from rstat?
+	movei	1,.PRIIN		; find out what kind of tty we are
+	GTTYP
+	 JFATAL				; blew up (shouldn't happen)
+	move	7,2
+	movei	1,ter.m%*ter.t%-1	; #19 get some offset
+Trmch1:	camn	7,Lstter(1)		; #19 is this the one?
+	 jrst	[idivi	1,ter.m%	; #19 get section of table
+		 addi	1,1		; #34 change offset
+		 movem	1,Term		; #32 save terminal type
+		 RET]
+	sojge	1,Trmch1		; #1 try the next
+	jumpn	6,[setzm	Term	; #34 change zero to <CR>
+		   RET]
+	TMSG	<%ROGUE - I don't know your terminal type>
+	movei	1,Trmch2		; #34 let's parse the type
+	movem	1,Csblk+.CMFLG		; #34 reparse address
+	hrroi	1,[asciz /Terminal type? /]
+	movem	1,Csblk+.CMRTY
+	move	1,[xwd	.PRIIN,.PRIOU]
+	movem	1,Csblk+.CMIOJ
+Trmch3:	movei	1,Csblk
+	movei	2,[flddb.(.cmini)]
+	COMND
+	 JFATAL	(Can't even begin to parse Trmtyp)
+Trmch2:	movei	1,Csblk
+	movei	2,[flddb.(.cmkey,,C.tert)] ; #34 parse a type
+	COMND
+	 JFATAL	(TRMCHK)
+	txne	1,cm%nop
+	 jrst	[JWARN	<Unknown terminal type>
+		 jrst	Trmch3]
+	hrrz	5,(2)
+	movei	2,[flddb.(.cmcfm)]
+	COMND
+	 JFATAL	(TRMCHK)
+	txne	1,cm%nop
+	 jrst	[JWARN
+		 jrst	Trmch3]
+	caie	5,.VTOTH		; #34 other?
+	 jrst	[movem	5,Term		; #34 no, it's valid, save it
+		 RET]
+	TMSG	<?ROGUE: Unsupported terminal type?  Complain!
+>
+	HALTF
+	jrst	Trmchk
+
+	page
+
+; #7 Function Chk_File(Var FName:Name_String) : Boolean;
+; returns true if legal file name
+Chk.fi:	move	5,2
+	setzm	1(p)
+	tlo	2,-1
+	movx	1,gj%sht
+	GTJFN
+	 ERJMP	Chk.f1
+	aos	1(p)			; and return true
+Chk.f1:	move	2,5
+	RET
+
+Rdf.nl:	move	p,Sav.p			; #8 restore stack
+	pop	p,4
+	pop	p,3
+	pop	p,2
+	setzm	1(p)			; return false
+	RET
+	page
+
+	subttl	data area
+;DATA
+FndWkl:	z				; #32 if score in weeklies
+Fndall:	z				; #32 if in all_times
+Term:	z				; #32 terminal type
+Filjfn:	z				; #30 for parsing filenames
+Files:	exp	Files+4,Files+24,Files+44,Files+64
+	block	100			; #30 four files, see TABLE C.filt
+Gcload:	z				; #26 game check load average
+Initim:	z				; #21 uptime at start
+Inidat:	z				; #21 for the start date
+Inirun:	z				; #21 initial runtime of the process
+Sav.p:	z				; #8 area to save stack pointer
+C.rfil:	flddb.(.cmifi,cm%sdh,,<existing file name>,,C.rfi1)
+C.rfi1:	flddb.(.cmofi,cm%sdh,,<new file name>)
+
+C.rdfl:	flddb.(.cmifi,cm%sdh,,<existing file name>,,C.rdf1)
+C.rdf1:	flddb.(.cmofi,cm%sdh,,<new file name>,,
+	[flddb.(.cmcfm,cm%sdh,,<null line to quit>,)]) ; #7 <CR> or file
+
+Is.set:	z				; #1 is setup mode? 0 means yes
+C.tfil:	flddb.(.cmifi,cm%sdh,,<configuration file name>,,
+	[flddb.(.cmcfm,cm%sdh,,<null line to quit>,)]) ; #3 <CR> or file
+
+C.staf:	flddb.(.cmkey,,C.stat,,,C.file)
+C.file:	flddb.(.cmkey,,C.filt,,,C.term)	; #30
+C.term:	flddb.(.cmkey,,C.tert)
+
+C.filt:	TABLE				; #30 file of filenames
+	T	(Log-File,0)		; these indices are fixed.
+	T	(Message-File,1)	; don't change.
+	T	(Names-File,2)
+	T	(Score-File,3)
+	TEND
+
+C.stat:	TABLE				; #30 keytable for STAFFY file
+	T	(Bug-Address,Stafbg)	; for mailing address...
+	T	(Bug-Report,Stafbg)	; for mailing address...
+	T	(Deny-Account,Denyac)	; can't play rogue
+	T	(Load-Average,Getcld)	; get the fatal load average
+	T	(Staff-Account,Stafac)	; staff account
+	TEND
+
+; #34 To add a new terminal type, increment the definition of ter.t%.
+; #34 The number of the new terminal will be that value (ter.t%-1).
+; #34 Now add the name/value pair for that terminal type to C.tert.
+
+	.VTOTH==-1
+	.VTV52==1
+	.VTANS==2
+	.VTDM2==3
+	.VTIN4==4
+	.VTCON==5
+	.VTHAZ==6
+	.VTHPX==7
+	.VTR40==10
+	.VTSUP==11
+
+
+C.tert:	TABLE				; #30 table of terminal types in STAFFY
+	T	(Ansi,.VTANS)		; ansi compatible terminal
+	T	(Con108,.VTCON,cm%inv)	; see next line
+	T	(Concept-108,.VTCON)	; concept-108
+	T	(Datamedia-2500,.VTDM2)	; datamedia-2500
+	T	(Dm2500,.VTDM2,cm%inv)	; again
+	T	(Haz1500,.VTHAZ,cm%inv)	; hazeltine-1500
+	T	(Hazeltine-1500,.VTHAZ)	; ditto
+	T	(Heath-19,.VTV52)	; #34
+	T	(Hp26xx,.VTHPX)		; HP terminals
+	T	(Inf400,.VTIN4,cm%inv)	; infoton-400
+	T	(Infoton-400,.VTIN4)	; again
+	T	(Other,.VTOTH)		; #34 for when we have to ask
+	T	(Regent-40,.VTR40)	; #34 add regent-40
+	T	(Supdup-NVT,.VTSUP)	; #35 add Supdup (mit)
+	T	(Vt100,.VTANS)		; ansi compatible terminal
+	T	(Vt52,.VTV52)		; vt52 compatible terminal
+	TEND
+	z
+	ter.t%==11			; #25 how many types defined
+	ter.m%==4			; #23 how many entries per type
+Lstter:	block	ter.t%*ter.m%		; #19 ter.m% entries per type
+
+Terjfn:	z				; #1 configuration file jfn
+Staf.p:	z				; #19 pointer to start of string space
+Staf.s:	block	10			; #1 pointers
+Staf.a:	block	100+1			; #1 max string space for 10 accounts
+Deny.p:	z				; #19 pointer to start of string space
+Deny.s:	block	10			; #17 pointers
+Deny.a:	block	100+1			; #17 max string space for 10 accounts
+Csblk:	exp	Repars			; reparse address
+	0				; input and output jfns (filled later)
+	-1,,[asciz /ROGUE>/]		; ^r text
+	-1,,Txtbfr			; input buffer
+	-1,,Txtbfr			; next field
+	bfrsiz*5			; input buffer size
+	0				; unparsed chars left
+	-1,,Atmbfr			; atom buffer
+	atmsiz*5			; size of atom buffer
+	Cs.jfn				; #1 jfn block address
+
+Cs.jfn:	block	.GJATR+1
+
+Swblk:	flddb. (.cmkey,,Swtab,,,Opblk)	; #14 stuff for parsing options
+Opblk:	flddb. (.cmkey,,Optab,,,[flddb.(.cmcfm)])
+
+Optab:	TABLE				; #30 table of options
+	T	(Fruit,I.frui)
+	T	(Name,I.name)
+	T	(Save,I.save)
+	TEND
+
+Swtab:	TABLE
+	T	(Ask,Askswi-Firswi)
+	T	(Flush,Fluswi-Firswi)
+	T	(Jump,Jumswi-Firswi)
+	T	(No,Noswi-Firswi)
+	T	(Slow,Sloswi-Firswi)
+	T	(Terse,Terswi-Firswi)
+	T	(Tomb,Tomswi-Firswi)	; #33
+	T	(Turn,Turswi-Firswi)
+	TEND
+
+Rsbuf:	block	bfrsiz
+	z
+Txtbfr:	block	bfrsiz
+	0
+Atmbfr:	block	atmsiz
+	0
+
+;default switch value area
+Namstr:	ascii /     /
+	ascii /     /
+	ascii /     /
+	ascii /     /
+	ascii /     /
+	ascii /     /
+	ascii /     /
+	ascii /     /
+	0
+Frustr:	ascii /Slime/
+	ascii /-Mold/
+	ascii /     /
+	ascii /     /
+	ascii /     /
+	ascii /     /
+	0
+Filstr:	ascii /PS:RO/
+	ascii /GUE.S/
+	ascii /AVE  /
+	ascii /     /
+	ascii /     /
+	ascii /     /
+	ascii /     /
+	ascii /     /
+	0
+Hisnam:	ascii /     /			; used to store user's name for
+	ascii /     /			;   validation
+	ascii /     /
+	ascii /     /
+	ascii /     /
+	ascii /     /
+	0
+	0
+Rscbuf:	ascii /     /			; rescan buffer storage
+	ascii /     /
+	ascii /     /
+	ascii /     /
+	ascii /     /
+	ascii /     /
+	0
+	0
+Blanks:	ascii /     /
+	ascii /     /
+	ascii /     /
+	ascii /     /
+	ascii /     /
+	ascii /     /
+	0
+
+Firswi:					; #14 same loc as askswi
+Askswi:	.true				; these switches must be consecutive
+Fluswi:	.true				;   and the first one must be listed
+Jumswi:	.true				;   as the source blt address upon
+Sloswi:	.false				;   return to caller
+Terswi:	.false
+Turswi:	.true				; #6 turn switch
+Tomswi:	.true				; #33 print tombstone?
+Noswi:	.false				; #14 this one isn't returned
+;more data
+
+Sjfn:	z				; score file jfn
+Scoacc:	z				; score file access word
+Svjfn:	z				; save file jfn
+Inijfn:	z				; init file jfn
+Ljfn:	z				; log file jfn
+Noflg:	z
+Savsco:	z
+Fileda:	z
+T.save:	z				; save terminal interrupt word
+
+M.str:	block	5			; string for move.to SOUT call
+
+Fdbblk:	block	.FBBK0			; big enough to get .rscre and .fbcnt
+
+	loc	374000
+Spage:	block	1000			; page to keep scores on
+	reloc
+
+	xlist
+	lit
+	list
+
+	end
+
+;;;Local modes:
+;;;Comment Column: 40
+;;;End:

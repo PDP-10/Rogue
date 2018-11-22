@@ -1,0 +1,83 @@
+(* Constant declarations for ROGUE.
+
+   Gary Craig/Jay Skeer/John Relph/Oscar Erickson, December 1982 *)
+
+(* monster index constants *)
+Const
+  m_ant = 1;		m_bat = 2;		m_centaur = 3;
+  m_dragon = 4;		m_eye = 5;		m_fungi = 6;
+  m_gnoll = 7;		m_hob = 8;		m_invis = 9;
+  m_jackal = 10;	m_kobold = 11;		m_lep = 12;
+  m_mimic = 13;		m_nymph = 14;		m_orc = 15;
+  m_purple = 16;	m_quasit = 17;		m_rust = 18;
+  m_snake = 19;		m_troll = 20;		m_umber = 21;
+  m_vampire = 22;	m_wraith = 23;		m_xorn = 24;
+  m_yeti = 25;		m_zombie = 26;
+
+  m_almiraj = 27;	m_blind = 28;		m_crypt = 29;
+  m_death = 30;		m_ettin = 31;		m_flind = 32;
+  m_gith = 33;		m_homon = 34;		m_int = 35;
+  m_juiblex = 36;	m_kill = 37;		m_larva = 38;
+  m_minotaur = 39;	m_norker = 40;		m_owlbear = 41;
+  m_phantom = 42;	m_quaggoth = 43;	m_revenant = 44;
+  m_sand = 45;		m_tira = 46;		m_umpleby = 47;
+  m_vodyanoi = 48;	m_werewolf = 49;	m_xvart = 50;
+  m_yulgrin = 51;	m_zallige = 52;
+  Max_Monster = 52; (* Upper and Lower case monsters! *)
+
+(* Object index constants *)
+  p_gold_det = 1;	p_mon_det = 2;		p_magic_det = 3;
+  p_reg_str = 4;	p_reg_int = 5;		p_reg_dex = 6;
+  p_poison = 7;		p_feeble = 8;		p_fumble = 9;
+  p_incr_str = 10;	p_incr_int = 11;	p_inc_dex = 12;
+  p_skill = 13;		p_healing = 14;		p_ex_healing = 15;
+  p_invis = 16;		p_haste = 17;		p_slow = 18;
+  p_blind = 19;		p_confuse = 20;		p_confuse_mon = 21;
+  p_sleep = 22;		p_paralysis = 23;	p_nothing = 24;
+  p_sustenance = 25; (* #54 *)
+  Max_Potion = 25;
+
+  s_armor = 1;		s_weapon = 2;		s_curse = 3;
+  s_mapping = 4;	s_identify = 5;		s_genocide = 6;
+  s_scare = 7;		s_nothing = 8;		s_teleport = 9;
+  s_summon = 10;	s_light = 11;		s_hold = 12;
+  Max_Scroll = 12;
+
+  w_drain = 1;		w_fire = 2;		w_lightning = 3;
+  w_cold = 4;		w_light = 5;		w_poly = 6;
+  w_tele_to = 7;	w_tele_away = 8;	w_missile = 9;
+  w_nothing = 10;	w_striking = 11;	w_slow = 12;
+  w_haste = 13;		w_cancel = 14;		w_alchemy = 15;
+  w_wonder = 16;	w_paralyze = 17;	w_curing = 18;
+  w_search = 19;	w_blunder = 20;
+  Max_Wand = 20; (* #36 *)
+
+  a_leather = 1;	a_stud = 2;		a_ring = 3;
+  a_scale = 4;		a_chain = 5;		a_splint = 6;
+  a_banded = 7;		a_plate = 8;
+  Max_Armor = 8;
+
+  r_regen = 1;		r_digest = 2;		r_sustain = 3;
+  r_protect = 4;	r_dex = 5;		r_str = 6;
+  r_int = 7;		r_see_inv = 8;		r_teleport = 9;
+  r_stealth = 10;	r_aggra = 11;		r_search = 12;
+  r_incr_dam = 13;	r_resur = 14;		r_vampiric = 15;
+  r_invis = 16;		R_Decode = 17;
+  Max_Ring = 17;
+
+  wp_two_sword = 1;	wp_long_sword = 2;	wp_dagger = 3;
+  wp_sling = 4;		wp_rocks = 5;		wp_crossbow = 6;
+  wp_bolts = 7;		wp_bow = 8;		wp_arrows = 9;
+  wp_mace = 10;		wp_sil_sword = 11;	wp_sil_arrows = 12;
+  Max_Weapon = 12;
+
+  Max_Treasure = 97; (* Sum of Max_Potion,Max_Scroll,Max_Wand,
+		      Max_Ring,Max_Weapon,Max_Armor,and
+		      1 for gold, 2 for food *)
+
+  Mon_lo_offset = 64;	Mon_hi_offset = 70;
+
+  t_arrow = 1;		t_bear = 2;		t_door = 3;
+  t_dart = 4;		t_teleport = 5;
+	
+last_constant = 0.0.
